@@ -1,0 +1,37 @@
+body {
+    background-color: oldlace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: black solid 1px;
+    margin-top: 70%;
+}
+
+button{
+    margin: 10px;
+    width: 12.5rem;
+    background-color: black;
+    color: white
+}
+
+input {
+    font-size: large;
+    width: 12rem;
+}
+
+.errors {
+    color: #ff0033;
+}
+
+.form__container {
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}

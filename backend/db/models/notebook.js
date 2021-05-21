@@ -2,7 +2,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Notebook = sequelize.define('Notebook', {
     name: DataTypes.STRING,
-    content: DataTypes.STRING,
     userId: DataTypes.INTEGER
   }, {});
   Notebook.associate = function(models) {

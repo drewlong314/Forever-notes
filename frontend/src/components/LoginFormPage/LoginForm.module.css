@@ -1,11 +1,11 @@
-body {
+.container {
     background-color: oldlace;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-form {
+.form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,14 +14,14 @@ form {
     margin-top: 70%;
 }
 
-button{
+.submitButton{
     margin: 10px;
     width: 12.5rem;
     background-color: black;
     color: white
 }
 
-input {
+.input {
     font-size: large;
     width: 12rem;
 }
@@ -30,7 +30,7 @@ input {
     color: #ff0033;
 }
 
-.form__container {
+.formContainer {
     margin-bottom: 20px;
     margin-left: 20px;
     margin-right: 20px;

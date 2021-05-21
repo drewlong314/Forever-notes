@@ -2,7 +2,7 @@ const express = require("express");
 const asyncHandler = require("express-async-handler");
 
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User, Note } = require("../../db/models");
+const { User, Note, Notebook } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
@@ -52,6 +52,20 @@ router.get(
       },
     });
     res.json(notes);
+  })
+);
+
+router.get(
+  "/:id/notebooks",
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const notebooks = await Notebook.findAll({
+      where: {
+        userId: id,
+      },
+    });
+    res.json(notebooks);
   })
 );
 

@@ -1,4 +1,3 @@
-import Cookies from "js-cookie";
 import { csrfFetch } from "./csrf";
 
 const SET_NOTES = "notes/SET_NOTES";
@@ -14,7 +13,7 @@ export const getNotes = (id) => async (dispatch) => {
     const notes = await res.json();
     console.log(notes);
     dispatch(setNotes(notes));
-  } 
+  }
 };
 
 const initialState = {};

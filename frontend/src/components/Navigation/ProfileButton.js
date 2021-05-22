@@ -34,15 +34,15 @@ function ProfileButton({ user }) {
         <i className="fas fa-cookie" />
       </button>
         <span>      {user.username}</span>
-      {/* {showMenu && (
+      {showMenu && (
         <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
+          {/* <li>{user.username}</li>
+          <li>{user.email}</li> */}
           <li>
             <button class="profile-icon" onClick={logout}>Log Out</button>
           </li>
         </ul>
-      )} */}
+      )}
     </>
   );
 }

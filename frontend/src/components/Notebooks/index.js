@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getNotebooks } from "../../store/notebooks";
+import styles from './Notebooks.module.css'
 
 const Notebooks = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Notebooks = () => {
   }, [dispatch, sessionUser, history]);
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>This is Notebooks</h1>
       <ul>
         {notebooks.map((notebook) => {

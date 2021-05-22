@@ -1,5 +1,16 @@
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.noteHeader {
+    border: black 1px solid;
+}
+
+.noteUl {
+    position:absolute;
+    top: 20;
+    background-color: sandybrown;
 }

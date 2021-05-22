@@ -1,0 +1,22 @@
+.noteCard {
+    border: black 1px solid;
+    /* margin: 0;
+    position: fixed;
+    left: 22%;
+    top: 0;
+    background-color: burlywood; */
+    /* width: 20%; */
+    /* height: 10%; */
+}
+
+.name {
+    font-size: large;
+}
+
+.content {
+    font-size: xx-large;
+}
+
+.updated {
+    font-size: xx-small;
+}

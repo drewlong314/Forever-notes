@@ -24,7 +24,7 @@ function Navigation({ isLoaded }) {
       <ul className={styles.navList}>
         <li>{isLoaded && sessionLinks}</li>
         <li>
-          <form class="search-bar"></form>
+          <form className="search-bar"></form>
             <input type='text' placeholder='Search'></input>
         </li>
         <li>

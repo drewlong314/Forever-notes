@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getNotebooks, updateNotebooks } from "../../store/notebooks";
+import { getNotebooks, updateNotebooks, deleteNotebook } from "../../store/notebooks";
 import styles from "./Notebooks.module.css";
 
 const Notebooks = () => {
@@ -49,7 +49,7 @@ const Notebooks = () => {
         })}
       </ul>
       <button onClick={() => setTextArea(true)}>EDIT</button>
-      <button onClick={() => dispatch(deleteNotebooks(selected.id))}>DELETE</button>
+      <button onClick={() => dispatch(deleteNotebook(selected.id))}>DELETE</button>
       {textArea ? (
         <textarea
           value={selectedName}

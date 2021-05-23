@@ -8,7 +8,8 @@ router.put(
   asyncHandler(async (req, res) => {
     const { id } = req.params;
     const note = await Note.findByPk(id);
-    note.content = req.body.content;
+    if (req.body.content) note.content = req.body.content;
+    if (req.body.name) note.name = req.body.name;
     await note.save();
     res.json(note);
   })

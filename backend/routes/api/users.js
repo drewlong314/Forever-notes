@@ -55,28 +55,6 @@ router.get(
   })
 );
 
-router.delete(
-  "/:id/notes/:noteId",
-  asyncHandler(async (req, res) => {
-    const { id, noteId } = req.params;
-    // const notesss = await Note.findAll({
-    //   where: {
-    //     userId: id,
-    //   },
-    // });
-    const note = await Note.findByPk(noteId);
-    await note.destroy();
-    // const notes = await Note.findAll({
-    //   where: {
-    //     userId: id,
-    //   },
-    // });
-    // console.log("before Delete:", notesss, "after Delete:", notes);
-    console.log(note)
-    res.json(note);
-  })
-);
-
 router.get(
   "/:id/notebooks",
   requireAuth,

@@ -27,7 +27,7 @@
     width: 500px;
 }
 
-.contentArea {
+.nameArea {
     box-sizing: border-box;
     position: absolute;
     padding: 10px;
@@ -35,4 +35,14 @@
     width: 50vw;
     right: 0;
     top: 0;
+}
+
+.contentArea {
+    box-sizing: border-box;
+    position: absolute;
+    padding: 10px;
+    height: 100vh;
+    width: 50vw;
+    right: 0;
+    top: 50%;
 }

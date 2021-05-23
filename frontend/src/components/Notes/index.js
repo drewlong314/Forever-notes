@@ -11,20 +11,33 @@ const Notes = () => {
   const notes = useSelector((state) => Object.values(state.notes));
   const sessionUser = useSelector((state) => state.session.user);
   const [selected, setSelected] = useState();
+  const [selectedName, setSelectedName] = useState();
   const [selectedContent, setSelectedContent] = useState();
   const history = useHistory();
   // console.log(sessionUser, notes);
   // console.log(selected, "----------");
 
-  const updateNote = async (cont) => {
+  const updateContent = async (cont) => {
     const noteId = selected.id;
-    const content = { content: cont }
+    const content = { content: cont };
     const res = await csrfFetch(`/api/notes/${noteId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(content),
+    });
+  };
+
+  const updateName = async (cont) => {
+    const noteId = selected.id;
+    const name = { name: cont };
+    const res = await csrfFetch(`/api/notes/${noteId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(name),
     });
   };
 
@@ -38,13 +51,15 @@ const Notes = () => {
 
   useEffect(() => {
     if (selectedContent) {
-      updateNote(selectedContent);
+      updateContent(selectedContent);
+      updateName(selectedName);
     }
     if (notes.length > 0 && !selected) {
       setSelected(notes[0]);
       setSelectedContent(notes[0].content);
+      setSelectedName(notes[0].name);
     }
-  }, [notes, selected, selectedContent]);
+  }, [notes, selected, selectedContent, selectedName]);
 
   return (
     <div className={styles.container}>
@@ -60,6 +75,7 @@ const Notes = () => {
               onClick={() => {
                 setSelected(note);
                 setSelectedContent(note.content);
+                setSelectedName(note.name)
               }}
             >
               <NoteCard note={note} className={styles.NoteCard} />
@@ -71,6 +87,11 @@ const Notes = () => {
         <div className={styles.selectedNote}>
           <h1>{selected.name}</h1>
           <h1>{selected.content}</h1>
+          <textarea
+            className={styles.nameArea}
+            value={selectedName}
+            onChange={(e) => setSelectedName(e.target.value)}
+          ></textarea>
           <textarea
             className={styles.contentArea}
             value={selectedContent}

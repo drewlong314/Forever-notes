@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { csrfFetch } from "../../store/csrf";
-import { getNotes } from "../../store/notes";
+import { getNotes, updateNotes } from "../../store/notes";
 import NoteCard from "../NoteCard";
 import styles from "./Notes.module.css";
 
@@ -13,33 +13,35 @@ const Notes = () => {
   const [selected, setSelected] = useState();
   const [selectedName, setSelectedName] = useState();
   const [selectedContent, setSelectedContent] = useState();
+  const [changed, setChanged] = useState(false)
   const history = useHistory();
+  console.log(notes)
   // console.log(sessionUser, notes);
   // console.log(selected, "----------");
 
-  const updateContent = async (cont) => {
-    const noteId = selected.id;
-    const content = { content: cont };
-    const res = await csrfFetch(`/api/notes/${noteId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(content),
-    });
-  };
+  // const updateContent = async (cont) => {
+  //   const noteId = selected.id;
+  //   const content = { content: cont };
+  //   const res = await csrfFetch(`/api/notes/${noteId}`, {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(content),
+  //   });
+  // };
 
-  const updateName = async (cont) => {
-    const noteId = selected.id;
-    const name = { name: cont };
-    const res = await csrfFetch(`/api/notes/${noteId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(name),
-    });
-  };
+  // const updateName = async (cont) => {
+  //   const noteId = selected.id;
+  //   const name = { name: cont };
+  //   const res = await csrfFetch(`/api/notes/${noteId}`, {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(name),
+  //   });
+  // };
 
   useEffect(() => {
     if (sessionUser) {
@@ -50,16 +52,24 @@ const Notes = () => {
   }, [dispatch, sessionUser, history]);
 
   useEffect(() => {
-    if (selectedContent) {
-      updateContent(selectedContent);
-      updateName(selectedName);
-    }
+    // if (selectedContent) {
+    //   dispatch(updateNotes(selected.id, selectedContent, selectedName))
+    //   // updateContent(selectedContent);
+    //   // updateName(selectedName);
+    // }
     if (notes.length > 0 && !selected) {
       setSelected(notes[0]);
       setSelectedContent(notes[0].content);
       setSelectedName(notes[0].name);
     }
   }, [notes, selected, selectedContent, selectedName]);
+
+  useEffect(() => {
+    if (changed) {
+      dispatch(updateNotes(selected.id, selectedContent, selectedName))
+      setChanged(false)
+    }
+  },[changed])
 
   return (
     <div className={styles.container}>
@@ -90,12 +100,18 @@ const Notes = () => {
           <textarea
             className={styles.nameArea}
             value={selectedName}
-            onChange={(e) => setSelectedName(e.target.value)}
+            onChange={(e) => {
+              setChanged(true)
+              setSelectedName(e.target.value)
+            }}
           ></textarea>
           <textarea
             className={styles.contentArea}
             value={selectedContent}
-            onChange={(e) => setSelectedContent(e.target.value)}
+            onChange={(e) => {
+              setChanged(true)
+              setSelectedContent(e.target.value)
+            }}
           ></textarea>
         </div>
       ) : null}

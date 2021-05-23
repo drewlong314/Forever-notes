@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { csrfFetch } from "../../store/csrf";
 import { getNotes } from "../../store/notes";
 import NoteCard from "../NoteCard";
 import styles from "./Notes.module.css";
@@ -15,6 +16,18 @@ const Notes = () => {
   // console.log(sessionUser, notes);
   // console.log(selected, "----------");
 
+  const updateNote = async (cont) => {
+    const noteId = selected.id;
+    const content = { content: cont }
+    const res = await csrfFetch(`/api/notes/${noteId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(content),
+    });
+  };
+
   useEffect(() => {
     if (sessionUser) {
       dispatch(getNotes(sessionUser.id));
@@ -24,11 +37,14 @@ const Notes = () => {
   }, [dispatch, sessionUser, history]);
 
   useEffect(() => {
+    if (selectedContent) {
+      updateNote(selectedContent);
+    }
     if (notes.length > 0 && !selected) {
-      setSelected(notes[0])
-      setSelectedContent(notes[0].content)
-    };
-  }, [notes, selected]);
+      setSelected(notes[0]);
+      setSelectedContent(notes[0].content);
+    }
+  }, [notes, selected, selectedContent]);
 
   return (
     <div className={styles.container}>
@@ -40,10 +56,12 @@ const Notes = () => {
         </div>
         {notes.map((note) => {
           return (
-            <div onClick={() => {
-              setSelected(note)
-              setSelectedContent(note.content)
-              }}>
+            <div
+              onClick={() => {
+                setSelected(note);
+                setSelectedContent(note.content);
+              }}
+            >
               <NoteCard note={note} className={styles.NoteCard} />
             </div>
           );
@@ -53,7 +71,11 @@ const Notes = () => {
         <div className={styles.selectedNote}>
           <h1>{selected.name}</h1>
           <h1>{selected.content}</h1>
-          <textarea className={styles.contentArea} value={selectedContent} onChange={(e) => setSelectedContent(e.target.value)}></textarea>
+          <textarea
+            className={styles.contentArea}
+            value={selectedContent}
+            onChange={(e) => setSelectedContent(e.target.value)}
+          ></textarea>
         </div>
       ) : null}
     </div>

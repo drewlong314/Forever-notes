@@ -3,12 +3,15 @@ const asyncHandler = require("express-async-handler");
 const { Note } = require("../../db/models");
 const router = express.Router();
 
-// router.get(
-//   "/",
-//   asyncHandler(async (req, res) => {
-//     const notes = await Note.findAll();
-//     res.json(notes);
-//   })
-// );
+router.put(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const note = await Note.findByPk(id);
+    note.content = req.body.content;
+    await note.save();
+    res.json(note);
+  })
+);
 
 module.exports = router;

@@ -9,6 +9,10 @@
     /* height: 10%; */
 }
 
+.noteCard:hover {
+    background-color: seagreen;
+}
+
 .name {
     font-size: large;
 }

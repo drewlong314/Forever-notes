@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getNotes } from "../../store/notes";
@@ -9,8 +9,10 @@ const Notes = () => {
   const dispatch = useDispatch();
   const notes = useSelector((state) => Object.values(state.notes));
   const sessionUser = useSelector((state) => state.session.user);
+  const [selected, setSelected] = useState();
   const history = useHistory();
-  console.log(sessionUser, notes);
+  // console.log(sessionUser, notes);
+  console.log(selected, "----------");
 
   useEffect(() => {
     if (sessionUser) {
@@ -19,6 +21,10 @@ const Notes = () => {
       history.push("/login");
     }
   }, [dispatch, sessionUser, history]);
+
+  useEffect(() => {
+    if (notes.length > 0 && !selected) setSelected(notes[0]);
+  }, [notes, selected]);
 
   return (
     <div className={styles.container}>
@@ -29,17 +35,19 @@ const Notes = () => {
           {notes.length}
         </div>
         {notes.map((note) => {
-          return <NoteCard note={note} className={styles.NoteCard} />;
+          return (
+            <div onClick={() => setSelected(note)}>
+              <NoteCard note={note} className={styles.NoteCard} />
+            </div>
+          );
         })}
-        {/* <ul>
-        {notes.map((note) => {
-          return [
-          <li key={note.name}>Note Name: {note.name}</li>,
-          <li key={note.content}>Note Context: {note.content}</li>
-          ]
-        })}
-      </ul> */}
       </ul>
+      {selected ? (
+        <div className={styles.selectedNote}>
+          <h1>{selected.name}</h1>
+          <h1>{selected.content}</h1>
+        </div>
+      ) : null}
     </div>
   );
 };

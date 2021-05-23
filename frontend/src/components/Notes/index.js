@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { csrfFetch } from "../../store/csrf";
-import { getNotes, updateNotes } from "../../store/notes";
+import { getNotes, updateNotes, deleteNotes } from "../../store/notes";
 import NoteCard from "../NoteCard";
 import styles from "./Notes.module.css";
 
@@ -10,38 +9,25 @@ const Notes = () => {
   const dispatch = useDispatch();
   const notes = useSelector((state) => Object.values(state.notes));
   const sessionUser = useSelector((state) => state.session.user);
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState(null);
   const [selectedName, setSelectedName] = useState();
   const [selectedContent, setSelectedContent] = useState();
-  const [changed, setChanged] = useState(false)
+  const [changed, setChanged] = useState(false);
+  const [deleted, setDeleted] = useState(false);
   const history = useHistory();
-  console.log(notes)
-  // console.log(sessionUser, notes);
-  // console.log(selected, "----------");
+  console.log(notes);
 
-  // const updateContent = async (cont) => {
-  //   const noteId = selected.id;
-  //   const content = { content: cont };
-  //   const res = await csrfFetch(`/api/notes/${noteId}`, {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(content),
-  //   });
-  // };
-
-  // const updateName = async (cont) => {
-  //   const noteId = selected.id;
-  //   const name = { name: cont };
-  //   const res = await csrfFetch(`/api/notes/${noteId}`, {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(name),
-  //   });
-  // };
+  const setSelectedProperties = (notes) => {
+    if (notes.length) {
+      setSelected(notes[0]);
+      setSelectedContent(notes[0].content);
+      setSelectedName(notes[0].name);
+    } else {
+      setSelected(null);
+      setSelectedContent(null);
+      setSelectedName(null);
+    }
+  };
 
   useEffect(() => {
     if (sessionUser) {
@@ -52,24 +38,27 @@ const Notes = () => {
   }, [dispatch, sessionUser, history]);
 
   useEffect(() => {
-    // if (selectedContent) {
-    //   dispatch(updateNotes(selected.id, selectedContent, selectedName))
-    //   // updateContent(selectedContent);
-    //   // updateName(selectedName);
-    // }
+    console.log(selected, "----------------------");
     if (notes.length > 0 && !selected) {
-      setSelected(notes[0]);
-      setSelectedContent(notes[0].content);
-      setSelectedName(notes[0].name);
+      setSelectedProperties(notes);
     }
+    if (notes.length && selected) {
+      let hasSelected = false;
+      notes.forEach((note) => {
+        if (note.id === selected.id) hasSelected = true;
+        console.log(note.id);
+      });
+      console.log(hasSelected);
+      if (!hasSelected) setSelectedProperties(notes)
+    } else if (!notes.length) setSelectedProperties(notes)
   }, [notes, selected, selectedContent, selectedName]);
 
   useEffect(() => {
     if (changed) {
-      dispatch(updateNotes(selected.id, selectedContent, selectedName))
-      setChanged(false)
+      dispatch(updateNotes(selected.id, selectedContent, selectedName));
+      setChanged(false);
     }
-  },[changed])
+  }, [changed, notes]);
 
   return (
     <div className={styles.container}>
@@ -85,7 +74,7 @@ const Notes = () => {
               onClick={() => {
                 setSelected(note);
                 setSelectedContent(note.content);
-                setSelectedName(note.name)
+                setSelectedName(note.name);
               }}
             >
               <NoteCard note={note} className={styles.NoteCard} />
@@ -101,18 +90,27 @@ const Notes = () => {
             className={styles.nameArea}
             value={selectedName}
             onChange={(e) => {
-              setChanged(true)
-              setSelectedName(e.target.value)
+              setChanged(true);
+              setSelectedName(e.target.value);
             }}
           ></textarea>
           <textarea
             className={styles.contentArea}
             value={selectedContent}
             onChange={(e) => {
-              setChanged(true)
-              setSelectedContent(e.target.value)
+              setChanged(true);
+              setSelectedContent(e.target.value);
             }}
           ></textarea>
+          <button
+            onClick={() => {
+              console.log(notes, "before Delete");
+              dispatch(deleteNotes(selected.id));
+              setDeleted(true);
+            }}
+          >
+            DELETE NOTE
+          </button>
         </div>
       ) : null}
     </div>

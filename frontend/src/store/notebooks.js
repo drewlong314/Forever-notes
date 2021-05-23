@@ -16,6 +16,24 @@ export const getNotebooks = (id) => async (dispatch) => {
   }
 };
 
+export const updateNotebooks = (id,title) => async (dispatch) => {
+  console.log('id of notebook', id)
+  const content = {
+    name: title,
+  };
+  const res = await csrfFetch(`/api/notebooks/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(content),
+  });
+  if (res.ok) {
+    const notebooks = await res.json();
+    dispatch(setNotebooks([notebooks]));
+  }
+};
+
 const initialState = {};
 
 const notebooksReducer = (state = initialState, action) => {

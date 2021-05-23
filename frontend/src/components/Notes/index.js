@@ -10,9 +10,10 @@ const Notes = () => {
   const notes = useSelector((state) => Object.values(state.notes));
   const sessionUser = useSelector((state) => state.session.user);
   const [selected, setSelected] = useState();
+  const [selectedContent, setSelectedContent] = useState();
   const history = useHistory();
   // console.log(sessionUser, notes);
-  console.log(selected, "----------");
+  // console.log(selected, "----------");
 
   useEffect(() => {
     if (sessionUser) {
@@ -23,7 +24,10 @@ const Notes = () => {
   }, [dispatch, sessionUser, history]);
 
   useEffect(() => {
-    if (notes.length > 0 && !selected) setSelected(notes[0]);
+    if (notes.length > 0 && !selected) {
+      setSelected(notes[0])
+      setSelectedContent(notes[0].content)
+    };
   }, [notes, selected]);
 
   return (
@@ -36,7 +40,10 @@ const Notes = () => {
         </div>
         {notes.map((note) => {
           return (
-            <div onClick={() => setSelected(note)}>
+            <div onClick={() => {
+              setSelected(note)
+              setSelectedContent(note.content)
+              }}>
               <NoteCard note={note} className={styles.NoteCard} />
             </div>
           );
@@ -46,6 +53,7 @@ const Notes = () => {
         <div className={styles.selectedNote}>
           <h1>{selected.name}</h1>
           <h1>{selected.content}</h1>
+          <textarea className={styles.contentArea} value={selectedContent} onChange={(e) => setSelectedContent(e.target.value)}></textarea>
         </div>
       ) : null}
     </div>

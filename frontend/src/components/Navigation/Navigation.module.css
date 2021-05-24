@@ -1,9 +1,15 @@
+
+
 .navList {
-    margin: 0;
+    /* margin: 0;
     position: fixed;
     left: 0;
     top: 0;
+    margin: 0;
+    padding: 0; */
+    /* height: 100vh; */
     background-color: burlywood;
-    width: 20%;
-    height: 100%;
+    margin: 0;
+    width: 19vw;
+    height: 100vh;
 }

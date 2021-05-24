@@ -1,8 +1,16 @@
+ .pageContainer {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    justify-content: flex-start;
+}
+
 .container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    /* justify-content: center;
+    align-items: center; */
 }
 
 .noteHeader {
@@ -10,39 +18,39 @@
 }
 
 .noteUl {
-    position: absolute;
     margin: 0;
     padding: 0;
-    top: 0;
-    left: 22%;
     background-color: sandybrown;
-    height: 100%;
-    width: 15%;
+    width: 16vw;
+    height: 100vh;
 }
 
 .selectedNote {
-    position: absolute;
-    right: 0;
-    top:0;
-    width: 500px;
+    display: flex;
+    flex-direction: column;
+    width: 62.5vw;
 }
 
 .nameArea {
     box-sizing: border-box;
-    position: absolute;
     padding: 10px;
-    height: 100vh;
-    width: 50vw;
-    right: 0;
-    top: 0;
+    height: 5vh;
+    margin: 0;
+    padding: 10px;
+    border-left: grey 1px solid;
+    border-bottom: grey 1px solid;
+    border-top: none;
+    border-right: none;
+    resize: none;
 }
 
 .contentArea {
     box-sizing: border-box;
-    position: absolute;
     padding: 10px;
     height: 100vh;
-    width: 50vw;
-    right: 0;
-    top: 50%;
+    border-left: grey 1px solid;
+    border-bottom: grey 1px solid;
+    border-top: none;
+    border-right: none;
+    resize: none;
 }

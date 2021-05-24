@@ -1,7 +1,13 @@
 import { csrfFetch } from "./csrf";
 
+const ADD_NOTE = "notes/ADD_NOTE";
 const SET_NOTES = "notes/SET_NOTES";
 const REMOVE_NOTE = "notes/REMOVE_NOTES";
+
+const addNote = (note) => ({
+  type: ADD_NOTE,
+  note,
+});
 
 const setNotes = (notes) => ({
   type: SET_NOTES,
@@ -12,6 +18,22 @@ const removeNote = (noteId) => ({
   type: REMOVE_NOTE,
   noteId,
 });
+
+export const createNote = (id, notebookId) => async (dispatch) => {
+  const data = { name: "", content: "", userId: id, notebookId: notebookId };
+  const res = await csrfFetch(`/api/notes`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  if (res.ok) {
+    const note = await res.json();
+    console.log(note);
+    dispatch(addNote(note));
+  }
+};
 
 export const getNotes = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${id}/notes`);
@@ -62,6 +84,12 @@ const notesReducer = (state = initialState, action) => {
       const newState = { ...state };
       const idToDelete = action.noteId;
       delete newState[idToDelete];
+      return newState;
+    }
+    case ADD_NOTE: {
+      const newState = { ...state };
+      const idToAdd = action.note.id;
+      newState[idToAdd] = action.note;
       return newState;
     }
     default:

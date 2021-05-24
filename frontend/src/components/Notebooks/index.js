@@ -44,7 +44,7 @@ const Notebooks = () => {
         {notebooks.map((notebook) => {
           return (
             <li
-              key={notebook.name}
+              key={notebook.id}
               onClick={() => {
                 setSelected(notebook);
                 setSelectedName(notebook.name);

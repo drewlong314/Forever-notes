@@ -19,11 +19,7 @@ const removeNotebook = (notebookId) => ({
   notebookId,
 });
 
-export const createNotebook = (id, name) => async (dispatch) => { // I changed this name
-  // {
-  //   name: 'red',
-  //   userId: 1
-  // }
+export const createNotebook = (id, name) => async (dispatch) => {
   const content = {name: name, userId: id}
   const res = await csrfFetch(`/api/notebooks`, {
     method: "POST",
@@ -43,7 +39,7 @@ export const getNotebooks = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${id}/notebooks`);
   if (res.ok) {
     const notebooks = await res.json();
-    console.log(notebooks);
+    console.log(notebooks, 'eieieieieieieieieieiei');
     dispatch(setNotebooks(notebooks));
   }
 };

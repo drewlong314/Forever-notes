@@ -3,6 +3,19 @@ const asyncHandler = require("express-async-handler");
 const { Note } = require("../../db/models");
 const router = express.Router();
 
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const note = await Note.create({
+      name: req.body.name,
+      content: req.body.content,
+      userId: req.body.userId,
+      notebookId: req.body.notebookId,
+    });
+    res.json(note);
+  })
+);
+
 router.put(
   "/:id",
   asyncHandler(async (req, res) => {

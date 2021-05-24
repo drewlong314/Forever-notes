@@ -1,15 +1,40 @@
-
-
 .navList {
-    /* margin: 0;
-    position: fixed;
-    left: 0;
-    top: 0;
-    margin: 0;
-    padding: 0; */
-    /* height: 100vh; */
-    background-color: burlywood;
-    margin: 0;
-    width: 19vw;
-    height: 100vh;
+  box-sizing: border-box;
+  background-color: burlywood;
+  margin: 0;
+  width: 21vw;
+  height: 100vh;
+  list-style-type: none;
+  padding: 20px;
+}
+
+.navUser {
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.navSearchContainer {
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+/* .navSearch {
+    border-radius: 50%;
+} */
+
+.navButton {
+  box-sizing: border-box;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 10px;
+}
+
+.navLi {
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.navAnchor {
+  color: black;
+  text-decoration: none;
 }

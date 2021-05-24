@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
-import * as sessionActions from '../../store/session';
+import { useDispatch } from "react-redux";
+import * as sessionActions from "../../store/session";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function ProfileButton({ user }) {
       setShowMenu(false);
     };
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
@@ -33,13 +33,13 @@ function ProfileButton({ user }) {
       <button onClick={openMenu}>
         <i className="fas fa-cookie" />
       </button>
-        <span>      {user.username}</span>
+      <span> {user.username}</span>
       {showMenu && (
         <ul className="profile-dropdown">
-          {/* <li>{user.username}</li>
-          <li>{user.email}</li> */}
           <li>
-            <button className="profile-icon" onClick={logout}>Log Out</button>
+            <button className="profile-icon" onClick={logout}>
+              Log Out
+            </button>
           </li>
         </ul>
       )}

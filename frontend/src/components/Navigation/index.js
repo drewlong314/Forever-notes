@@ -7,7 +7,7 @@ import styles from "./Navigation.module.css";
 import { getNotebooks } from "../../store/notebooks";
 
 function Navigation({ isLoaded }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const notebooks = useSelector((state) => Object.values(state.notebooks));
 
@@ -39,26 +39,38 @@ function Navigation({ isLoaded }) {
   return (
     <nav>
       <ul className={styles.navList}>
-        <li>{isLoaded && sessionLinks}</li>
-        <li>
-          <form className="search-bar"></form>
-          <input type="text" placeholder="Search"></input>
+        <li className={styles.navUser}>{isLoaded && sessionLinks}</li>
+        <li className={styles.navSearchContainer}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              console.log("The form submitted!");
+            }}
+          >
+            <input className={styles.navSearch} type="text" placeholder="Search"></input>
+          </form>
         </li>
-        <li>
-          <button onClick={() => dispatch(createNote(sessionUser.id, notebooks[0].id))}>+ New Note</button>
+        <li className={styles.navButton}>
+          <button
+            onClick={() =>
+              dispatch(createNote(sessionUser.id, notebooks[0].id))
+            }
+          >
+            + New Note
+          </button>
         </li>
-        <li>
-          <NavLink exact to="/">
+        <li className={styles.navLi}>
+          <NavLink className={styles.navAnchor} exact to="/">
             Home
           </NavLink>
         </li>
-        <li>
-          <NavLink exact to="/notes">
+        <li className={styles.navLi}>
+          <NavLink className={styles.navAnchor} exact to="/notes">
             Notes
           </NavLink>
         </li>
-        <li>
-          <NavLink exact to="/notebooks">
+        <li className={styles.navLi}>
+          <NavLink className={styles.navAnchor} exact to="/notebooks">
             Notebooks
           </NavLink>
         </li>

@@ -1,17 +1,43 @@
 import { csrfFetch } from "./csrf";
 
+const ADD_NOTEBOOK = "notebook/ADD_NOTEBOOK";
 const SET_NOTEBOOKS = "notebooks/SET_NOTEBOOKS";
-const REMOVE_NOTEBOOK = "notes/REMOVE_NOTEBOOKS";
+const REMOVE_NOTEBOOK = "notebooks/REMOVE_NOTEBOOKS";
+
+const addNotebook = (notebook) => ({
+  type: ADD_NOTEBOOK,
+  notebook,
+});
 
 const setNotebooks = (notebooks) => ({
   type: SET_NOTEBOOKS,
   notebooks,
 });
 
-const removeNotebook = (noteId) => ({
+const removeNotebook = (notebookId) => ({
   type: REMOVE_NOTEBOOK,
-  noteId,
+  notebookId,
 });
+
+export const createNotebook = (id, name) => async (dispatch) => { // I changed this name
+  // {
+  //   name: 'red',
+  //   userId: 1
+  // }
+  const content = {name: name, userId: id}
+  const res = await csrfFetch(`/api/notebooks`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(content),
+  });
+  if (res.ok) {
+    const notebook = await res.json();
+    console.log(notebook);
+    dispatch(addNotebook(notebook));
+  }
+};
 
 export const getNotebooks = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${id}/notebooks`);
@@ -61,8 +87,14 @@ const notebooksReducer = (state = initialState, action) => {
       return newState;
     case REMOVE_NOTEBOOK: {
       const newState = { ...state };
-      const idToDelete = action.noteId;
+      const idToDelete = action.notebookId;
       delete newState[idToDelete];
+      return newState;
+    }
+    case ADD_NOTEBOOK: {
+      const newState = { ...state };
+      const idToAdd = action.notebook.id
+      newState[idToAdd] = action.notebook
       return newState;
     }
     default:

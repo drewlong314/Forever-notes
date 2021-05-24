@@ -3,6 +3,14 @@ const asyncHandler = require("express-async-handler");
 const { Notebook } = require("../../db/models");
 const router = express.Router();
 
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const notebook = await Notebook.create({ name: req.body.name, userId: req.body.userId });
+    res.json(notebook);
+  })
+);
+
 router.put(
   "/:id",
   asyncHandler(async (req, res) => {

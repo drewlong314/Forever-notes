@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getNotebooks, updateNotebooks, deleteNotebook } from "../../store/notebooks";
+import {
+  getNotebooks,
+  updateNotebooks,
+  deleteNotebook,
+  createNotebook,
+} from "../../store/notebooks";
 import styles from "./Notebooks.module.css";
 
 const Notebooks = () => {
@@ -10,7 +15,9 @@ const Notebooks = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const [selected, setSelected] = useState();
   const [selectedName, setSelectedName] = useState();
-  const [textArea, setTextArea] = useState(false);
+  const [editArea, setEditArea] = useState(false);
+  const [createArea, setCreateArea] = useState(false);
+  const [createInput, setCreateInput] = useState("");
   const [changed, setChanged] = useState(false);
   const history = useHistory();
   console.log(sessionUser, notebooks);
@@ -48,9 +55,11 @@ const Notebooks = () => {
           );
         })}
       </ul>
-      <button onClick={() => setTextArea(true)}>EDIT</button>
-      <button onClick={() => dispatch(deleteNotebook(selected.id))}>DELETE</button>
-      {textArea ? (
+      <button onClick={() => setEditArea(true)}>EDIT</button>
+      <button onClick={() => dispatch(deleteNotebook(selected.id))}>
+        DELETE
+      </button>
+      {editArea ? (
         <textarea
           value={selectedName}
           onChange={(e) => {
@@ -59,6 +68,21 @@ const Notebooks = () => {
             setSelectedName(e.target.value);
           }}
         ></textarea>
+      ) : null}
+      <button onClick={() => setCreateArea(true)}>CREATE</button>
+      {createArea ? (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            dispatch(createNotebook(sessionUser.id, createInput));
+          }}
+        >
+          <input
+            value={createInput}
+            onChange={(e) => setCreateInput(e.target.value)}
+          ></input>
+          <button type="submit">SUBMIT</button>
+        </form>
       ) : null}
     </div>
   );

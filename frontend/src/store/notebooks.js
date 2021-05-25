@@ -30,7 +30,6 @@ export const createNotebook = (id, name) => async (dispatch) => {
   });
   if (res.ok) {
     const notebook = await res.json();
-    console.log(notebook);
     dispatch(addNotebook(notebook));
   }
 };
@@ -39,13 +38,11 @@ export const getNotebooks = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${id}/notebooks`);
   if (res.ok) {
     const notebooks = await res.json();
-    console.log(notebooks, 'eieieieieieieieieieiei');
     dispatch(setNotebooks(notebooks));
   }
 };
 
 export const updateNotebooks = (id, title) => async (dispatch) => {
-  console.log("id of notebook", id);
   const content = {
     name: title,
   };

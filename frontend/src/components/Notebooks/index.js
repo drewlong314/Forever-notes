@@ -24,7 +24,7 @@ function Notebooks() {
   const [createInput, setCreateInput] = useState("");
   const [changed, setChanged] = useState(false);
   const history = useHistory();
-  console.log(sessionUser, notebooks);
+
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -107,7 +107,6 @@ function Notebooks() {
           <textarea
             value={selectedName}
             onChange={(e) => {
-              console.log(selected.id);
               setChanged(true);
               setSelectedName(e.target.value);
             }}

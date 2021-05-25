@@ -30,7 +30,6 @@ export const createNote = (id, notebookId) => async (dispatch) => {
   });
   if (res.ok) {
     const note = await res.json();
-    console.log(note);
     dispatch(addNote(note));
   }
 };

@@ -7,7 +7,6 @@ const router = express.Router();
 router.post(
   "/",
   asyncHandler(async (req, res) => {
-    console.log(req.body);
     const query = req.body.string;
     const id = req.body.id;
     const notes = await Note.findAll({

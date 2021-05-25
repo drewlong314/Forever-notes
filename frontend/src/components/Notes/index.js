@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getNotes, updateNotes, deleteNotes } from "../../store/notes";
-import * as sessionActions from "../../store/session"
+import * as sessionActions from "../../store/session";
 import Navigation from "../Navigation";
 import NoteCard from "../NoteCard";
 import styles from "./Notes.module.css";
@@ -19,7 +19,6 @@ function Notes() {
   const [changed, setChanged] = useState(false);
   const [deleted, setDeleted] = useState(false);
   const history = useHistory();
-  console.log(notes);
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -46,7 +45,6 @@ function Notes() {
   }, [dispatch, sessionUser, history]);
 
   useEffect(() => {
-    console.log(selected, "----------------------");
     if (notes.length > 0 && !selected) {
       setSelectedProperties(notes);
     }
@@ -54,9 +52,7 @@ function Notes() {
       let hasSelected = false;
       notes.forEach((note) => {
         if (note.id === selected.id) hasSelected = true;
-        console.log(note.id);
       });
-      console.log(hasSelected);
       if (!hasSelected) setSelectedProperties(notes);
     } else if (!notes.length) setSelectedProperties(notes);
   }, [notes, selected, selectedContent, selectedName]);
@@ -70,7 +66,7 @@ function Notes() {
 
   return (
     <div className={styles.pageContainer}>
-      <Navigation isLoaded={isLoaded}/>
+      <Navigation isLoaded={isLoaded} />
       <div className={styles.container}>
         <ul className={styles.noteUl}>
           <div className={styles.noteHeader}>
@@ -112,7 +108,6 @@ function Notes() {
             ></textarea>
             <button
               onClick={() => {
-                console.log(notes, "before Delete");
                 dispatch(deleteNotes(selected.id));
                 setDeleted(true);
               }}
@@ -124,6 +119,6 @@ function Notes() {
       </div>
     </div>
   );
-};
+}
 
 export default Notes;

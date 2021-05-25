@@ -53,7 +53,6 @@ function SearchPage(props) {
       let hasSelected = false;
       searchList.forEach((note) => {
         if (note.id === selected.id) hasSelected = true;
-        console.log(note.id);
       });
       if (!hasSelected) setSelectedProperties(searchList);
     } else if (!searchList.length) setSelectedProperties(searchList);
@@ -110,7 +109,6 @@ function SearchPage(props) {
             ></textarea>
             <button
               onClick={() => {
-                console.log(notes, "before Delete");
                 dispatch(deleteNotes(selected.id));
                 setDeleted(true);
               }}

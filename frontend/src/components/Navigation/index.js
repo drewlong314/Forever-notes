@@ -43,7 +43,6 @@ function Navigation({ isLoaded }) {
       body: JSON.stringify(data),
     });
     const json = await res.json();
-    console.log(json);
     history.push("/search", { json });
   };
 
@@ -56,7 +55,6 @@ function Navigation({ isLoaded }) {
             onSubmit={(e) => {
               e.preventDefault();
               searchSubmit(searchInput);
-              console.log("The form submitted!");
             }}
           >
             <input

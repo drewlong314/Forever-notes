@@ -91,7 +91,7 @@ function Notebooks() {
                   {notebook.updatedAt.split("T")[0]}
                 </p>
                 <div className={styles.notebookDot}>
-                  <DropDown />
+                  <DropDown notebook={notebook}/>
                   {/* <button className={styles.notebookAction}> ...</button> */}
                 </div>
               </div>

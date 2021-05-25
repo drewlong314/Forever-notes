@@ -5,24 +5,30 @@ import { updateNotebooks, deleteNotebook } from "../../store/notebooks";
 import LoginFormModal from "../LoginFormModal";
 import styles from "./DropDown.module.css";
 import LoginForm from "../LoginFormModal/LoginForm";
+import RenameNotebookModal from "../RenameNotebookModal";
 
-function DropDown() {
+function DropDown({notebook}) {
   const [showMenu, setShowMenu] = useState(false);
   const notebooks = useSelector((state) => Object.values(state.notebooks));
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const menuRef = useRef(null);
+  const buttonRef = useRef(null)
 
   const showMenuFunc = () => {
     setShowMenu(true);
   };
 
   const closeMenu = (e) => {
-    setShowMenu(false);
+    console.log(menuRef.current, "////////////////////////////////////");
+    if (!menuRef.current.contains(e.target)) {
+      setShowMenu(false);
+      document.removeEventListener("click", closeMenu);
+    }
     const menu = document.querySelector("#menu");
     // console.log(menu);
-    console.log(menuRef.current, "////////////////////////////////////");
-    document.removeEventListener("click", closeMenu);
+
+
   };
 
   useEffect(() => {
@@ -33,13 +39,13 @@ function DropDown() {
   }, [showMenu]);
 
   useEffect(() => {
+    console.log(buttonRef.current)
     console.log(menuRef.current);
-  }, [menuRef.current]);
+  }, [menuRef.current, buttonRef.current]);
 
   return (
     <div>
-      <button onClick={(e) => showMenuFunc()}>...</button>
-      <LoginFormModal></LoginFormModal>
+      <button  onClick={(e) => showMenuFunc()}>...</button>
       {showMenu ? (
         <div ref={menuRef} id={"menu"} className={styles.menuItem}>
           <button
@@ -50,8 +56,8 @@ function DropDown() {
             Add new note
           </button>
 
-          <button> Rename notebook </button>
-          <LoginFormModal></LoginFormModal>
+          <RenameNotebookModal notebook={notebook}/>
+          {/* <LoginFormModal/> */}
           <button> Delete notebook </button>
         </div>
       ) : null}

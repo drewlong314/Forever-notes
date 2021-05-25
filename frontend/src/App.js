@@ -6,7 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Notes from "./components/Notes";
 import Notebooks from "./components/Notebooks";
-import SearchPage from './components/SearchPage'
+import SearchPage from "./components/SearchPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,9 +32,7 @@ function App() {
           <Route exact path="/notebooks">
             <Notebooks />
           </Route>
-          <Route path="/search">
-            <SearchPage />
-          </Route>
+          <Route path="/search" render={(props) => <SearchPage {...props} />} />
         </Switch>
       )}
     </>

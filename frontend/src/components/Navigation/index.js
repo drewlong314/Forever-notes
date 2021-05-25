@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Route, Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createNote } from "../../store/notes";
 import ProfileButton from "./ProfileButton";
 import styles from "./Navigation.module.css";
 import { getNotebooks } from "../../store/notebooks";
 import { csrfFetch } from "../../store/csrf";
+import SearchPage from "../SearchPage";
 
 function Navigation({ isLoaded }) {
+  const history = useHistory()
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const notebooks = useSelector((state) => Object.values(state.notebooks));
@@ -31,7 +33,7 @@ function Navigation({ isLoaded }) {
   }, [dispatch, sessionUser]);
 
   const searchSubmit = async () => {
-    const data = { data: 'e', id: sessionUser.id}
+    const data = { data: "e", id: sessionUser.id };
     const res = await csrfFetch(`/api/search`, {
       method: "POST",
       headers: {
@@ -39,8 +41,15 @@ function Navigation({ isLoaded }) {
       },
       body: JSON.stringify(data),
     });
-    const json = await res.json()
-    console.log(json)
+    const json = await res.json();
+    console.log(json);
+    history.push('/search', { json });
+    // <Redirect
+    //   to={{
+    //     pathname: "/search",
+    //     state: { json },
+    //   }}
+    // />;
   };
 
   // useEffect(() => {
@@ -58,7 +67,7 @@ function Navigation({ isLoaded }) {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              searchSubmit()
+              searchSubmit();
               console.log("The form submitted!");
             }}
           >

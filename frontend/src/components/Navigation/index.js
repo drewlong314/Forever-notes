@@ -5,6 +5,7 @@ import { createNote } from "../../store/notes";
 import ProfileButton from "./ProfileButton";
 import styles from "./Navigation.module.css";
 import { getNotebooks } from "../../store/notebooks";
+import { csrfFetch } from "../../store/csrf";
 
 function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
@@ -29,6 +30,19 @@ function Navigation({ isLoaded }) {
     }
   }, [dispatch, sessionUser]);
 
+  const searchSubmit = async () => {
+    const data = { data: 'e', id: sessionUser.id}
+    const res = await csrfFetch(`/api/search`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await res.json()
+    console.log(json)
+  };
+
   // useEffect(() => {
   //   if (notebooks === [] && sessionUser.id)
   //   console.log(sessionUser.id, 'line28')
@@ -44,10 +58,15 @@ function Navigation({ isLoaded }) {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              searchSubmit()
               console.log("The form submitted!");
             }}
           >
-            <input className={styles.navSearch} type="text" placeholder="Search"></input>
+            <input
+              className={styles.navSearch}
+              type="text"
+              placeholder="Search"
+            ></input>
           </form>
         </li>
         <li className={styles.navButton}>

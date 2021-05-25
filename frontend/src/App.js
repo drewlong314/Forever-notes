@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router";
-import Navigation from "./components/Navigation";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Notes from "./components/Notes";
 import Notebooks from "./components/Notebooks";
-import DropDown from './components/DropDown'
+import SearchPage from './components/SearchPage'
 
 function App() {
   const dispatch = useDispatch();
@@ -33,8 +32,8 @@ function App() {
           <Route exact path="/notebooks">
             <Notebooks />
           </Route>
-          <Route path='/dropdown'>
-            <DropDown />
+          <Route path="/search">
+            <SearchPage />
           </Route>
         </Switch>
       )}

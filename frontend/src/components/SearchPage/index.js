@@ -8,9 +8,10 @@ import NoteCard from "../NoteCard";
 import styles from "./SearchPage.module.css";
 
 function SearchPage(props) {
-  const state = props.location.state;
+  const history = useHistory();
+  let state = props.location.state;
+  if (!state) state= { json: []}
   const searchList = state.json
-  console.log(searchList, '`````````````````````````````````````')
   const dispatch = useDispatch();
   const notes = useSelector((state) => Object.values(state.notes));
   const sessionUser = useSelector((state) => state.session.user);
@@ -20,8 +21,7 @@ function SearchPage(props) {
   const [selectedContent, setSelectedContent] = useState();
   const [changed, setChanged] = useState(false);
   const [deleted, setDeleted] = useState(false);
-  const history = useHistory();
-  console.log(notes);
+
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -40,35 +40,31 @@ function SearchPage(props) {
   };
 
   useEffect(() => {
-    if (sessionUser) {
-      dispatch(getNotes(sessionUser.id));
-    } else {
+    if (!sessionUser) {
       history.push("/login");
     }
   }, [dispatch, sessionUser, history]);
 
   useEffect(() => {
-    console.log(selected, "----------------------");
-    if (notes.length > 0 && !selected) {
-      setSelectedProperties(notes);
+    if (searchList.length > 0 && !selected) {
+      setSelectedProperties(searchList);
     }
-    if (notes.length && selected) {
+    if (searchList.length && selected) {
       let hasSelected = false;
-      notes.forEach((note) => {
+      searchList.forEach((note) => {
         if (note.id === selected.id) hasSelected = true;
         console.log(note.id);
       });
-      console.log(hasSelected);
-      if (!hasSelected) setSelectedProperties(notes);
-    } else if (!notes.length) setSelectedProperties(notes);
-  }, [notes, selected, selectedContent, selectedName]);
+      if (!hasSelected) setSelectedProperties(searchList);
+    } else if (!searchList.length) setSelectedProperties(searchList);
+  }, [searchList, selected, selectedContent, selectedName]);
 
   useEffect(() => {
     if (changed) {
       dispatch(updateNotes(selected.id, selectedContent, selectedName));
       setChanged(false);
     }
-  }, [changed, notes]);
+  }, [changed, searchList]);
 
   return (
     <div className={styles.pageContainer}>

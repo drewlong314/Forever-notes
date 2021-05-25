@@ -9,11 +9,11 @@ import { csrfFetch } from "../../store/csrf";
 import SearchPage from "../SearchPage";
 
 function Navigation({ isLoaded }) {
-  const history = useHistory()
+  const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const notebooks = useSelector((state) => Object.values(state.notebooks));
-  const [searchInput, setSearchInput] = useState('')
+  const [searchInput, setSearchInput] = useState("");
 
   let sessionLinks;
   if (sessionUser) {
@@ -44,7 +44,7 @@ function Navigation({ isLoaded }) {
     });
     const json = await res.json();
     console.log(json);
-    history.push('/search', { json });
+    history.push("/search", { json });
   };
 
   return (

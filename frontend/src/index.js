@@ -8,6 +8,7 @@ import App from "./App";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import * as noteActions from "./store/notes";
+import { ModalProvider } from "./context/Modal";
 
 const store = configureStore();
 
@@ -27,9 +28,11 @@ if (process.env.NODE_ENV !== "production") {
 function Root() {
   return (
     <ReduxProvider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ModalProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ModalProvider>
     </ReduxProvider>
   );
 }

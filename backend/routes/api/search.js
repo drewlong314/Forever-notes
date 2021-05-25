@@ -8,7 +8,7 @@ router.post(
   "/",
   asyncHandler(async (req, res) => {
     console.log(req.body);
-    const query = req.body.data;
+    const query = req.body.string;
     const id = req.body.id;
     const notes = await Note.findAll({
       where: {
@@ -19,16 +19,17 @@ router.post(
         [Op.and]: [{ userId: id }],
       },
     });
-    const notebooks = await Notebook.findAll({
-        where: {
-          [Op.or]: [
-            { name: { [Op.iLike]: "%" + query + "%" } },
-          ],
-          [Op.and]: [{ userId: id }],
-        },
-      });
+    // const notebooks = await Notebook.findAll({
+    //     where: {
+    //       [Op.or]: [
+    //         { name: { [Op.iLike]: "%" + query + "%" } },
+    //       ],
+    //       [Op.and]: [{ userId: id }],
+    //     },
+    //   });
 
-    res.json({notes, notebooks});
+    // res.json({notes, notebooks});
+    res.json(notes)
   })
 );
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Route, Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createNote } from "../../store/notes";
@@ -13,6 +13,7 @@ function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const notebooks = useSelector((state) => Object.values(state.notebooks));
+  const [searchInput, setSearchInput] = useState('')
 
   let sessionLinks;
   if (sessionUser) {
@@ -32,8 +33,8 @@ function Navigation({ isLoaded }) {
     }
   }, [dispatch, sessionUser]);
 
-  const searchSubmit = async () => {
-    const data = { data: "e", id: sessionUser.id };
+  const searchSubmit = async (string) => {
+    const data = { string, id: sessionUser.id };
     const res = await csrfFetch(`/api/search`, {
       method: "POST",
       headers: {
@@ -44,20 +45,7 @@ function Navigation({ isLoaded }) {
     const json = await res.json();
     console.log(json);
     history.push('/search', { json });
-    // <Redirect
-    //   to={{
-    //     pathname: "/search",
-    //     state: { json },
-    //   }}
-    // />;
   };
-
-  // useEffect(() => {
-  //   if (notebooks === [] && sessionUser.id)
-  //   console.log(sessionUser.id, 'line28')
-  //   dispatch(getNotebooks(sessionUser.id))
-  //   console.log(notebooks, 'OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
-  // }, [notebooks, sessionUser])
 
   return (
     <nav>
@@ -67,12 +55,14 @@ function Navigation({ isLoaded }) {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              searchSubmit();
+              searchSubmit(searchInput);
               console.log("The form submitted!");
             }}
           >
             <input
               className={styles.navSearch}
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
               type="text"
               placeholder="Search"
             ></input>

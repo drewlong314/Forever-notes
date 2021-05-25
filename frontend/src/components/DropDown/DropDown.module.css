@@ -1,0 +1,13 @@
+.menuItem {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 200px;
+    background: white;
+    padding: 10px;
+    box-shadow: 1px -1px 4px #8a795d, -2px 2px 4px #8a795d;
+    position: fixed;
+    right: 130px
+}

@@ -10,6 +10,7 @@ import {
 import * as sessionActions from "../../store/session";
 import Navigation from "../Navigation";
 import styles from "./Notebooks.module.css";
+import DropDown from './../DropDown'
 
 function Notebooks() {
   const dispatch = useDispatch();
@@ -90,7 +91,8 @@ function Notebooks() {
                   {notebook.updatedAt.split("T")[0]}
                 </p>
                 <div className={styles.notebookDot}>
-                  <button className={styles.notebookAction}> ...</button>
+                  <DropDown />
+                  {/* <button className={styles.notebookAction}> ...</button> */}
                 </div>
               </div>
             );

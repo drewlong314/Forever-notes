@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createNote } from "../../store/notes";
 import { updateNotebooks, deleteNotebook } from "../../store/notebooks";
-import LoginFormModal from '../LoginFormModal'
+import LoginFormModal from "../LoginFormModal";
 import styles from "./DropDown.module.css";
 import LoginForm from "../LoginFormModal/LoginForm";
 
@@ -19,9 +19,9 @@ function DropDown() {
 
   const closeMenu = (e) => {
     setShowMenu(false);
-    const menu = document.querySelector('#menu')
-    console.log(menu)
-    console.log(menuRef.current, '////////////////////////////////////')
+    const menu = document.querySelector("#menu");
+    // console.log(menu);
+    console.log(menuRef.current, "////////////////////////////////////");
     document.removeEventListener("click", closeMenu);
   };
 
@@ -32,12 +32,16 @@ function DropDown() {
     //   : document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+  useEffect(() => {
+    console.log(menuRef.current);
+  }, [menuRef.current]);
+
   return (
     <div>
       <button onClick={(e) => showMenuFunc()}>...</button>
       <LoginFormModal></LoginFormModal>
       {showMenu ? (
-        <div ref={menuRef} id={'menu'} className={styles.menuItem}>
+        <div ref={menuRef} id={"menu"} className={styles.menuItem}>
           <button
             onClick={() =>
               dispatch(createNote(sessionUser.id, notebooks[0].id))

@@ -11,7 +11,7 @@ import * as sessionActions from "../../store/session";
 import Navigation from "../Navigation";
 import styles from "./Notebooks.module.css";
 
-const Notebooks = () => {
+function Notebooks() {
   const dispatch = useDispatch();
   const notebooks = useSelector((state) => Object.values(state.notebooks));
   const sessionUser = useSelector((state) => state.session.user);

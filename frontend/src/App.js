@@ -7,6 +7,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Notes from "./components/Notes";
 import Notebooks from "./components/Notebooks";
+import DropDown from './components/DropDown'
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route exact path="/notebooks">
             <Notebooks />
+          </Route>
+          <Route path='/dropdown'>
+            <DropDown />
           </Route>
         </Switch>
       )}

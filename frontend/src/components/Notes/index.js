@@ -7,7 +7,7 @@ import Navigation from "../Navigation";
 import NoteCard from "../NoteCard";
 import styles from "./Notes.module.css";
 
-const Notes = () => {
+function Notes() {
   const dispatch = useDispatch();
   const notes = useSelector((state) => Object.values(state.notes));
   const sessionUser = useSelector((state) => state.session.user);

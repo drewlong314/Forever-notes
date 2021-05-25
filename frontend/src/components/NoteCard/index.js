@@ -1,6 +1,6 @@
 import styles from "./NoteCard.module.css";
 
-const NoteCard = ({ note }) => {
+function NoteCard({ note }) {
   return (
     <div className={styles.noteCard}>
       <h1 className={styles.name} id={note.id}>

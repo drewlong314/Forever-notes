@@ -6,6 +6,7 @@ import LoginFormModal from "../LoginFormModal";
 import styles from "./DropDown.module.css";
 import LoginForm from "../LoginFormModal/LoginForm";
 import RenameNotebookModal from "../RenameNotebookModal";
+import DeleteNotebookModal from "../DeleteNotebookModal";
 
 function DropDown({ notebook }) {
   const [showMenu, setShowMenu] = useState(false);
@@ -28,17 +29,21 @@ function DropDown({ notebook }) {
     // }
   };
 
-  useEffect(() => {
-    // if (showMenu) {
-    //   document.addEventListener("click", closeMenu);
-    // }
-    //   : document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  // useEffect(() => {
+  //   // if (showMenu) {
+  //   //   document.addEventListener("click", closeMenu);
+  //   // }
+  //   //   : document.removeEventListener("click", closeMenu);
+  // }, [showMenu]);
 
   useEffect(() => {
     console.log(renameRef.current);
     console.log(menuRef.current);
   }, [menuRef.current, renameRef.current]);
+
+  useEffect(() => {
+    if (showMenu) setShowMenu(false)
+  }, [notebooks.length])
 
   return (
     <div>
@@ -58,7 +63,8 @@ function DropDown({ notebook }) {
             closeMenu={closeMenu}
           />
           {/* <LoginFormModal/> */}
-          <button onClick={() => dispatch(deleteNotebook(notebook.id))}> Delete notebook </button>
+          <DeleteNotebookModal onClick={() => setShowMenu(false)}notebook={notebook}/>
+          {/* <button onClick={() => dispatch(deleteNotebook(notebook.id))}> Delete notebook </button> */}
         </div>
       ) : null}
     </div>

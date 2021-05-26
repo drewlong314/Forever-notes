@@ -69,4 +69,18 @@ router.get(
   })
 );
 
+router.get(
+  "/:id/notebooks/:notebookId",
+  asyncHandler(async (req, res) => {
+    const { id, notebookId } = req.params;
+    const notes = await Note.findAll({
+      where: {
+        userId: id,
+        notebookId: notebookId,
+      },
+    });
+    res.json(notes);
+  })
+);
+
 module.exports = router;

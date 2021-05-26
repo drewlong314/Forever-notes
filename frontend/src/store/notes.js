@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const ADD_NOTE = "notes/ADD_NOTE";
 const SET_NOTES = "notes/SET_NOTES";
+const SET_NOTEBOOK_NOTES = "notes/SET_NOTEBOOK_NOTES";
 const REMOVE_NOTE = "notes/REMOVE_NOTES";
 
 const addNote = (note) => ({
@@ -11,6 +12,11 @@ const addNote = (note) => ({
 
 const setNotes = (notes) => ({
   type: SET_NOTES,
+  notes,
+});
+
+const setNotebookNotes = (notes) => ({
+  type: SET_NOTEBOOK_NOTES,
   notes,
 });
 
@@ -38,6 +44,15 @@ export const getNotes = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${id}/notes`);
   if (res.ok) {
     const notes = await res.json();
+    dispatch(setNotes(notes));
+  }
+};
+
+export const getNotebookNotes = (id, notebookId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/users/${id}/notebooks/${notebookId}`);
+  if (res.ok) {
+    const notes = await res.json();
+    console.log(notes, 'notes output getNotebookNotes')
     dispatch(setNotes(notes));
   }
 };
@@ -79,6 +94,12 @@ const notesReducer = (state = initialState, action) => {
         newState[note.id] = note;
       });
       return newState;
+    case SET_NOTEBOOK_NOTES:
+      const newStateNotebook = { ...state };
+      action.notes.forEach((note) => {
+        newStateNotebook[note.id] = note;
+      });
+      return newStateNotebook;
     case REMOVE_NOTE: {
       const newState = { ...state };
       const idToDelete = action.noteId;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getNotes, updateNotes, deleteNotes } from "../../store/notes";
+import { getNotebookNotes, updateNotes, deleteNotes } from "../../store/notes";
 import * as sessionActions from "../../store/session"
 import Navigation from "../Navigation";
 import NoteCard from "../NoteCard";
@@ -11,6 +11,7 @@ function NotebookSpecific(props) {
   const history = useHistory();
   let state = props.location.state;
   if (!state) state= { json: []}
+  console.log(state)
   const searchList = state.json
   const dispatch = useDispatch();
   const notes = useSelector((state) => Object.values(state.notes));
@@ -40,23 +41,30 @@ function NotebookSpecific(props) {
   };
 
   useEffect(() => {
-    if (!sessionUser) {
-      history.push("/login");
-    }
+    if (sessionUser) {
+        dispatch(getNotebookNotes(sessionUser.id, state.json[0].notebookId));
+      } else {
+        history.push("/login");
+      }
+    // if (!sessionUser) { //Might need to dispatch(getNotes(searchList.map(id)));
+    //   history.push("/login");
+    // }
   }, [dispatch, sessionUser, history]);
 
   useEffect(() => {
-    if (searchList.length > 0 && !selected) {
-      setSelectedProperties(searchList);
+      console.log(notes, 'LINE 55')
+      console.log(searchList)
+    if (notes.length > 0 && !selected) {
+      setSelectedProperties(notes);
     }
-    if (searchList.length && selected) {
+    if (notes.length && selected) {
       let hasSelected = false;
-      searchList.forEach((note) => {
+      notes.forEach((note) => {
         if (note.id === selected.id) hasSelected = true;
       });
-      if (!hasSelected) setSelectedProperties(searchList);
-    } else if (!searchList.length) setSelectedProperties(searchList);
-  }, [searchList, selected, selectedContent, selectedName]);
+      if (!hasSelected) setSelectedProperties(notes);
+    } else if (!notes.length) setSelectedProperties(notes);
+  }, [notes, selected, selectedContent, selectedName]);
 
   useEffect(() => {
     if (changed) {
@@ -73,9 +81,9 @@ function NotebookSpecific(props) {
           <div className={styles.noteHeader}>
             Notes
             <br />
-            {searchList.length}
+            {notes.length}
           </div>
-          {searchList.map((note) => {
+          {notes.map((note) => {
             return (
               <div
                 onClick={() => {

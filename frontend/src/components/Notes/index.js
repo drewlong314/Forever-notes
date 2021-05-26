@@ -91,6 +91,7 @@ function Notes() {
         {selected ? (
           <div className={styles.selectedNote}>
             <textarea
+              placeholder='Title'
               className={styles.nameArea}
               value={selectedName}
               onChange={(e) => {
@@ -99,6 +100,7 @@ function Notes() {
               }}
             ></textarea>
             <textarea
+              placeholder='Start writing'
               className={styles.contentArea}
               value={selectedContent}
               onChange={(e) => {

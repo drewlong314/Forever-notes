@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createNote } from "../../store/notes";
+import { useHistory} from "react-router-dom"
 import { updateNotebooks, deleteNotebook } from "../../store/notebooks";
 import LoginFormModal from "../LoginFormModal";
 import styles from "./DropDown.module.css";
@@ -13,6 +14,7 @@ function DropDown({ notebook }) {
   const notebooks = useSelector((state) => Object.values(state.notebooks));
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory()
   const menuRef = useRef(null);
   const renameRef = useRef(null);
   const buttonRef = useRef(null);
@@ -52,7 +54,10 @@ function DropDown({ notebook }) {
         <div ref={menuRef} id={"menu"} className={styles.menuItem}>
           <button className={styles.exit} onClick={() => setShowMenu(false)}>X</button>
           <button
-            onClick={() => dispatch(createNote(sessionUser.id, notebook.id))}
+            onClick={() => {
+              dispatch(createNote(sessionUser.id, notebook.id))
+              history.push('/notes')
+            }}
           >
             Add new note
           </button>

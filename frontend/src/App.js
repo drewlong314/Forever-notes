@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Notes from "./components/Notes";
 import Notebooks from "./components/Notebooks";
 import SearchPage from "./components/SearchPage";
+import NotebookSpecific from "./components/NotebookSpecific";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,10 @@ function App() {
             <Notebooks />
           </Route>
           <Route path="/search" render={(props) => <SearchPage {...props} />} />
+          <Route
+            path="/notebook/:id"
+            render={(props) => <NotebookSpecific {...props} />}
+          />
         </Switch>
       )}
     </>

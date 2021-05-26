@@ -1,0 +1,56 @@
+.pageContainer {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    justify-content: flex-start;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.noteHeader {
+    border: black 1px solid;
+}
+
+.noteUl {
+    margin: 0;
+    padding: 0;
+    background-color: sandybrown;
+    width: 16vw;
+    height: 100vh;
+}
+
+.selectedNote {
+    display: flex;
+    flex-direction: column;
+    width: 62.5vw;
+}
+
+.nameArea {
+    box-sizing: border-box;
+    padding: 10px;
+    height: 5vh;
+    margin: 0;
+    padding: 10px;
+    border-left: grey 1px solid;
+    border-bottom: grey 1px solid;
+    border-top: none;
+    border-right: none;
+    resize: none;
+}
+
+.contentArea {
+    box-sizing: border-box;
+    padding: 10px;
+    height: 100vh;
+    border-left: grey 1px solid;
+    border-bottom: grey 1px solid;
+    border-top: none;
+    border-right: none;
+    resize: none;
+}

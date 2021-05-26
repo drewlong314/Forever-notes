@@ -1,12 +1,25 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const { Notebook } = require("../../db/models");
+const { Notebook, Note } = require("../../db/models");
+const { Op } = require("sequelize");
 const router = express.Router();
 
 router.post(
   "/",
   asyncHandler(async (req, res) => {
     const notebook = await Notebook.create({ name: req.body.name, userId: req.body.userId });
+    res.json(notebook);
+  })
+);
+
+router.post(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const notebookId = req.body.notebookId
+    const userId = req.body.id;
+    const notebook = await Note.findAll({
+      where: {[Op.and]: [{notebookId}, {userId}]}
+    })
     res.json(notebook);
   })
 );

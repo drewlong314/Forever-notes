@@ -45,6 +45,17 @@
 
 .notebookTitle {
   grid-area: title;
+  align-self: center;
+}
+
+.notebookNameButton {
+  height: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+.notebookNameButton:hover {
+  background-color: cadetblue;
 }
 
 .notebookCreated {

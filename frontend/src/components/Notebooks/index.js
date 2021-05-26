@@ -7,10 +7,11 @@ import {
   deleteNotebook,
   createNotebook,
 } from "../../store/notebooks";
+import { csrfFetch } from "../../store/csrf";
 import * as sessionActions from "../../store/session";
 import Navigation from "../Navigation";
 import styles from "./Notebooks.module.css";
-import DropDown from './../DropDown'
+import DropDown from "./../DropDown";
 import NewNotebookModal from "../NewNotebookModal";
 
 function Notebooks() {
@@ -26,6 +27,18 @@ function Notebooks() {
   const [changed, setChanged] = useState(false);
   const history = useHistory();
 
+  const notebookSelect = async (notebookId) => {
+    const data = { notebookId, id: sessionUser.id };
+    const res = await csrfFetch(`/api/notebooks/${notebookId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await res.json();
+    history.push(`/notebook/${notebookId}`, { json });
+  };
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -61,14 +74,8 @@ function Notebooks() {
         <div className={styles.notebookInfo}>
           <p>{`${notebooks.length} notebooks`}</p>
           <div className={styles.notebookCreate}>
-          <NewNotebookModal/>
+            <NewNotebookModal />
           </div>
-          {/* <button
-            className={styles.notebookCreate}
-            onClick={() => setCreateArea(true)}
-          >
-            New Notebook
-          </button> */}
         </div>
         <div className={styles.notebookStats}>
           <p className={styles.notebookTitle}>TITLE</p>
@@ -88,14 +95,19 @@ function Notebooks() {
                     setSelectedName(notebook.name);
                   }}
                 >
-                  <button>E</button> {notebook.name}
+                  <button
+                    className={styles.notebookNameButton}
+                    onClick={() => notebookSelect(notebook.id)}
+                  >
+                    {notebook.name}
+                  </button>
                 </li>
                 <p className={styles.notebookCreated}>{sessionUser.username}</p>
                 <p className={styles.notebookUpdated}>
                   {notebook.updatedAt.split("T")[0]}
                 </p>
                 <div className={styles.notebookDot}>
-                  <DropDown notebook={notebook}/>
+                  <DropDown notebook={notebook} />
                   {/* <button className={styles.notebookAction}> ...</button> */}
                 </div>
               </div>
@@ -133,6 +145,6 @@ function Notebooks() {
       ) : null} */}
     </div>
   );
-};
+}
 
 export default Notebooks;

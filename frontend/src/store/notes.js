@@ -53,7 +53,23 @@ export const getNotebookNotes = (id, notebookId) => async (dispatch) => {
   if (res.ok) {
     const notes = await res.json();
     console.log(notes, 'notes output getNotebookNotes')
-    dispatch(setNotes(notes));
+    dispatch(setNotebookNotes(notes));
+  }
+};
+
+export const getSearchNotes = (listIds) => async (dispatch) => {
+  const data = {listIds}
+  const res = await csrfFetch(`/api/notes/search`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  if (res.ok) {
+    const notes = await res.json();
+    console.log(notes, 'notes output getSearchNotes')
+    dispatch(setNotebookNotes(notes));
   }
 };
 
@@ -90,12 +106,13 @@ const notesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_NOTES:
       const newState = { ...state };
+      // const newState = {}
       action.notes.forEach((note) => {
         newState[note.id] = note;
       });
       return newState;
     case SET_NOTEBOOK_NOTES:
-      const newStateNotebook = { ...state };
+      const newStateNotebook = {}
       action.notes.forEach((note) => {
         newStateNotebook[note.id] = note;
       });

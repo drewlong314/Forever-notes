@@ -14,6 +14,7 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
   const notebooks = useSelector((state) => Object.values(state.notebooks));
   const [searchInput, setSearchInput] = useState("");
+  const [changed, setChanged] = useState(false)
 
   let sessionLinks;
   if (sessionUser) {
@@ -33,6 +34,12 @@ function Navigation({ isLoaded }) {
     }
   }, [dispatch, sessionUser]);
 
+  useEffect(() => {
+    setChanged(false)
+    console.log('RERENDER')
+  }, [changed])
+
+
   const searchSubmit = async (string) => {
     const data = { string, id: sessionUser.id };
     const res = await csrfFetch(`/api/search`, {
@@ -43,7 +50,8 @@ function Navigation({ isLoaded }) {
       body: JSON.stringify(data),
     });
     const json = await res.json();
-    history.push("/search", { json });
+    setChanged(true)
+    history.push("/search", { json, string });
   };
 
   return (

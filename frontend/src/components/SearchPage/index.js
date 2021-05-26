@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getNotes, updateNotes, deleteNotes } from "../../store/notes";
-import * as sessionActions from "../../store/session"
+import { getSearchNotes, updateNotes, deleteNotes } from "../../store/notes";
+import * as sessionActions from "../../store/session";
 import Navigation from "../Navigation";
 import NoteCard from "../NoteCard";
 import styles from "./SearchPage.module.css";
@@ -10,8 +10,9 @@ import styles from "./SearchPage.module.css";
 function SearchPage(props) {
   const history = useHistory();
   let state = props.location.state;
-  if (!state) state= { json: []}
-  const searchList = state.json
+  if (!state) state = { json: [] };
+  console.log(state)
+  const searchList = state.json;
   const dispatch = useDispatch();
   const notes = useSelector((state) => Object.values(state.notes));
   const sessionUser = useSelector((state) => state.session.user);
@@ -21,7 +22,6 @@ function SearchPage(props) {
   const [selectedContent, setSelectedContent] = useState();
   const [changed, setChanged] = useState(false);
   const [deleted, setDeleted] = useState(false);
-
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -39,43 +39,56 @@ function SearchPage(props) {
     }
   };
 
-  useEffect(() => {
-    if (!sessionUser) {
-      history.push("/login");
-    }
-  }, [dispatch, sessionUser, history]);
+  const getIdOfList = () => {
+    const listIds = searchList.map((item) => item.id);
+    console.log(listIds, "LIST IDS");
+    return listIds;
+  };
 
   useEffect(() => {
-    if (searchList.length > 0 && !selected) {
-      setSelectedProperties(searchList);
+    if (sessionUser) {
+      dispatch(getSearchNotes(getIdOfList()));
+      console.log(notes)
+    } else {
+      history.push("/login");
     }
-    if (searchList.length && selected) {
+    // if (!sessionUser) {
+    //   history.push("/login");
+    // }
+  }, [dispatch, sessionUser, history, changed]);
+
+
+  useEffect(() => {
+    if (notes.length > 0 && !selected) {
+      setSelectedProperties(notes);
+    }
+    if (notes.length && selected) {
       let hasSelected = false;
-      searchList.forEach((note) => {
+      notes.forEach((note) => {
         if (note.id === selected.id) hasSelected = true;
       });
-      if (!hasSelected) setSelectedProperties(searchList);
-    } else if (!searchList.length) setSelectedProperties(searchList);
-  }, [searchList, selected, selectedContent, selectedName]);
+      if (!hasSelected) setSelectedProperties(notes);
+    } else if (!notes.length) setSelectedProperties(notes);
+  }, [notes, selected, selectedContent, selectedName]);
 
   useEffect(() => {
     if (changed) {
       dispatch(updateNotes(selected.id, selectedContent, selectedName));
       setChanged(false);
     }
-  }, [changed, searchList]);
+  }, [changed, searchList, notes]);
 
   return (
     <div className={styles.pageContainer}>
-      <Navigation isLoaded={isLoaded}/>
+      <Navigation isLoaded={isLoaded} />
       <div className={styles.container}>
         <ul className={styles.noteUl}>
           <div className={styles.noteHeader}>
             Notes
             <br />
-            {searchList.length}
+            {notes.length}
           </div>
-          {searchList.map((note) => {
+          {notes.map((note) => {
             return (
               <div
                 onClick={() => {
@@ -120,7 +133,7 @@ function SearchPage(props) {
       </div>
     </div>
   );
-};
+}
 
 // return <div>
 //       <h1>Search Page</h1>

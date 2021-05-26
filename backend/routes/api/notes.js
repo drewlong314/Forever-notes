@@ -1,5 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
+const { Op } = require("sequelize");
 const { Note } = require("../../db/models");
 const router = express.Router();
 
@@ -13,6 +14,20 @@ router.post(
       notebookId: req.body.notebookId,
     });
     res.json(note);
+  })
+);
+
+router.post(
+  "/search",
+  asyncHandler(async (req, res) => {
+    const {listIds} = req.body
+    const notes = await Note.findAll({where: {
+      id: {
+        [Op.in]: listIds
+      }
+    }})
+    console.log(notes, '---------------')
+    res.json(notes);
   })
 );
 

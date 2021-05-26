@@ -11,3 +11,13 @@
     position: fixed;
     right: 130px
 }
+
+.exit {
+    align-self: flex-end;
+    border: none;
+    /* background-color: #D11A2A; */
+}
+
+.exit:hover {
+    background-color: #D11A2A;
+}

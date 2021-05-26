@@ -14,13 +14,13 @@
 }
 
 .noteHeader {
-    border: black 1px solid;
+    border: #CDCDCD 1px solid;
 }
 
 .noteUl {
     margin: 0;
     padding: 0;
-    background-color: sandybrown;
+    background-color: #F1F1EF;
     width: 16vw;
     height: 100vh;
 }

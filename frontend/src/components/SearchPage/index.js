@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { getSearchNotes, updateNotes, deleteNotes } from "../../store/notes";
 import * as sessionActions from "../../store/session";
 import Navigation from "../Navigation";
 import NoteCard from "../NoteCard";
 import styles from "./SearchPage.module.css";
 
-function SearchPage(props) {
+function SearchPage() {
   const history = useHistory();
-  let state = props.location.state;
+  const location = useLocation()
+  let state = location.state;
   if (!state) state = { json: [] };
   console.log(state)
   const searchList = state.json;
@@ -39,11 +40,13 @@ function SearchPage(props) {
     }
   };
 
+
   const getIdOfList = () => {
     const listIds = searchList.map((item) => item.id);
     console.log(listIds, "LIST IDS");
     return listIds;
   };
+
 
   useEffect(() => {
     if (sessionUser) {
@@ -55,7 +58,7 @@ function SearchPage(props) {
     // if (!sessionUser) {
     //   history.push("/login");
     // }
-  }, [dispatch, sessionUser, history, changed]);
+  }, [dispatch, sessionUser, history, state]);
 
 
   useEffect(() => {

@@ -56,7 +56,7 @@ function DropDown({ notebook }) {
           <button
             onClick={() => {
               dispatch(createNote(sessionUser.id, notebook.id))
-              history.push('/notes')
+              history.push(`/notebook/${notebook.id}`)
             }}
           >
             Add new note

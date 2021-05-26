@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getNotebookNotes, updateNotes, deleteNotes } from "../../store/notes";
-import * as sessionActions from "../../store/session"
+import * as sessionActions from "../../store/session";
 import Navigation from "../Navigation";
 import NoteCard from "../NoteCard";
 import styles from "./NotebookSpecific.module.css";
@@ -10,9 +10,9 @@ import styles from "./NotebookSpecific.module.css";
 function NotebookSpecific(props) {
   const history = useHistory();
   let state = props.location.state;
-  if (!state) state= { json: []}
-  console.log(state)
-  const searchList = state.json
+  if (!state) state = { json: [] };
+  console.log(state);
+  const searchList = state.json;
   const dispatch = useDispatch();
   const notes = useSelector((state) => Object.values(state.notes));
   const sessionUser = useSelector((state) => state.session.user);
@@ -22,7 +22,6 @@ function NotebookSpecific(props) {
   const [selectedContent, setSelectedContent] = useState();
   const [changed, setChanged] = useState(false);
   const [deleted, setDeleted] = useState(false);
-
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -42,18 +41,19 @@ function NotebookSpecific(props) {
 
   useEffect(() => {
     if (sessionUser) {
+      if (state.json[0])
         dispatch(getNotebookNotes(sessionUser.id, state.json[0].notebookId));
-      } else {
-        history.push("/login");
-      }
+    } else {
+      history.push("/login");
+    }
     // if (!sessionUser) { //Might need to dispatch(getNotes(searchList.map(id)));
     //   history.push("/login");
     // }
   }, [dispatch, sessionUser, history]);
 
   useEffect(() => {
-      console.log(notes, 'LINE 55')
-      console.log(searchList)
+    console.log(notes, "LINE 55");
+    console.log(searchList);
     if (notes.length > 0 && !selected) {
       setSelectedProperties(notes);
     }
@@ -75,7 +75,7 @@ function NotebookSpecific(props) {
 
   return (
     <div className={styles.pageContainer}>
-      <Navigation isLoaded={isLoaded}/>
+      <Navigation isLoaded={isLoaded} />
       <div className={styles.container}>
         <ul className={styles.noteUl}>
           <div className={styles.noteHeader}>
@@ -128,7 +128,7 @@ function NotebookSpecific(props) {
       </div>
     </div>
   );
-};
+}
 
 // return <div>
 //       <h1>Search Page</h1>

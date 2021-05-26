@@ -11,6 +11,7 @@ import * as sessionActions from "../../store/session";
 import Navigation from "../Navigation";
 import styles from "./Notebooks.module.css";
 import DropDown from './../DropDown'
+import NewNotebookModal from "../NewNotebookModal";
 
 function Notebooks() {
   const dispatch = useDispatch();
@@ -59,12 +60,15 @@ function Notebooks() {
         </div>
         <div className={styles.notebookInfo}>
           <p>{`${notebooks.length} notebooks`}</p>
-          <button
+          <div className={styles.notebookCreate}>
+          <NewNotebookModal/>
+          </div>
+          {/* <button
             className={styles.notebookCreate}
             onClick={() => setCreateArea(true)}
           >
             New Notebook
-          </button>
+          </button> */}
         </div>
         <div className={styles.notebookStats}>
           <p className={styles.notebookTitle}>TITLE</p>
@@ -98,10 +102,10 @@ function Notebooks() {
             );
           })}
         </ul>
-        <button onClick={() => setEditArea(true)}>EDIT</button>
+        {/* <button onClick={() => setEditArea(true)}>EDIT</button>
         <button onClick={() => dispatch(deleteNotebook(selected.id))}>
           DELETE
-        </button>
+        </button> */}
 
         {editArea ? (
           <textarea
@@ -113,7 +117,7 @@ function Notebooks() {
           ></textarea>
         ) : null}
       </div>
-      {createArea ? ( // Make this a modal
+      {/* {createArea ? ( // Make this a modal
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -126,7 +130,7 @@ function Notebooks() {
           ></input>
           <button type="submit">SUBMIT</button>
         </form>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };

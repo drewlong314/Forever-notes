@@ -17,6 +17,7 @@ function DeleteNotebook({ notebook }) {
       <form onSubmit={handleSubmit} className={styles.form}>
         <h3 className={styles.action}>Delete Notebook?</h3>
         <p className={styles.description}>All notes in the notebooks will be deleted</p>
+        <div className={styles.line}></div>
         <button className={styles.submitButton} type="submit">
           Continue
         </button>

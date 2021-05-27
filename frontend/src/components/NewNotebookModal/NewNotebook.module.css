@@ -24,15 +24,27 @@
 
 .submitButton{
     box-sizing: border-box;
-    background-color: #ad5049;
+    background-color: black;
     color: white;
     border: none;
     border-radius: 6px;
     padding: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    /* margin: 20px; */
     width: 100px;
     font-size: 20px;
     align-self: flex-end;
+    cursor: pointer;
+}
+
+.input {
+    box-sizing: border-box;
+    font-size: 17px;
+    border-radius: 6px;
+    padding: 20px;
+    width: 300px;
+    height: 15px;
 }
 
 .line {

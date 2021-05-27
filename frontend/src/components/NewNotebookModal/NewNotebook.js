@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createNotebook } from "../../store/notebooks";
-
+import styles from "./NewNotebook.module.css";
 
 function NewNotebook() {
   const dispatch = useDispatch();
@@ -10,22 +10,24 @@ function NewNotebook() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    return dispatch(createNotebook(sessionUser.id, name))
+    return dispatch(createNotebook(sessionUser.id, name));
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>New Notebook</h1>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <h1 className={styles.action}>New Notebook</h1>
       <label>
-        Notebook Name
         <input
+          className={styles.input}
+          placeholder="Name of Notebook"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
       </label>
-      <button type="submit">Continue</button>
+      <div className={styles.line}></div>
+      <button type="submit" className={styles.submitButton}>Continue</button>
     </form>
   );
 }

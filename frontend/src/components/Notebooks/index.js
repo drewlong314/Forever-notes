@@ -48,7 +48,7 @@ function Notebooks() {
     if (sessionUser) {
       dispatch(getNotebooks(sessionUser.id));
     } else {
-      history.push("/login");
+      history.push("/");
     }
   }, [dispatch, sessionUser, history]);
 

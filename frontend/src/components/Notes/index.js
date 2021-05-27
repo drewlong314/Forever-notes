@@ -40,7 +40,7 @@ function Notes() {
     if (sessionUser) {
       dispatch(getNotes(sessionUser.id));
     } else {
-      history.push("/login");
+      history.push("/");
     }
   }, [dispatch, sessionUser, history]);
 

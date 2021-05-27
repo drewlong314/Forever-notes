@@ -44,7 +44,7 @@ function NotebookSpecific(props) {
       if (state.json[0])
         dispatch(getNotebookNotes(sessionUser.id, state.json[0].notebookId));
     } else {
-      history.push("/login");
+      history.push("/");
     }
     // if (!sessionUser) { //Might need to dispatch(getNotes(searchList.map(id)));
     //   history.push("/login");

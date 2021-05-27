@@ -51,7 +51,7 @@ function SearchPage() {
       dispatch(getSearchNotes(getIdOfList()));
       console.log(notes);
     } else {
-      history.push("/login");
+      history.push("/");
     }
     // if (!sessionUser) {
     //   history.push("/login");

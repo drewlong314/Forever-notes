@@ -1,7 +1,7 @@
 .navList {
   box-sizing: border-box;
   background-color: #272727;
-  color: #747474;
+  color: #f1f1efd8;
   margin: 0;
   width: 21vw;
   height: 100vh;
@@ -41,5 +41,5 @@
 .navAnchor {
   color: black;
   text-decoration: none;
-  color: #747474;
+  color: #f1f1efd8;
 }

@@ -1,5 +1,6 @@
 .noteCard {
     border-bottom: #DDDFD4 1px solid;
+    box-sizing: border-box;
     /* margin: 0;
     position: fixed;
     left: 22%;
@@ -7,15 +8,16 @@
     background-color: burlywood; */
     /* width: 20%; */
     /* height: 10%; */
-    /* color: #DDDFD4 */
+    /* color: #DDDFD4; */
 }
 
 .noteCard:hover {
-    background-color: seagreen;
+    background-color: #fdfdfd;
 }
 
 .name {
     font-size: large;
+    margin: 0;
 }
 
 .content {

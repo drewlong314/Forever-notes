@@ -41,7 +41,6 @@ function SignupFormPage() {
         </ul>
         <div className={styles.formContainer}>
           <label>
-            Email
             <div>
               <input
                 type="text"
@@ -56,7 +55,6 @@ function SignupFormPage() {
         </div>
         <div className={styles.formContainer}>
           <label>
-            Username
             <div>
               <input
                 type="text"
@@ -71,7 +69,6 @@ function SignupFormPage() {
         </div>
         <div className={styles.formContainer}>
           <label>
-            Password
             <div>
               <input
                 type="password"
@@ -86,7 +83,6 @@ function SignupFormPage() {
         </div>
         <div className={styles.formContainer}>
           <label>
-            Confirm Password
             <div>
               <input
                 type="password"
@@ -103,8 +99,8 @@ function SignupFormPage() {
           Sign Up
         </button>
         <div className={styles.formContainer}>
-          <NavLink to="/login">
-            <button className={styles.submitButton}>Go to Login Page</button>
+          <NavLink to="/">
+            <button className={styles.submitButton}>Go to Home Page</button>
           </NavLink>
         </div>
       </form>

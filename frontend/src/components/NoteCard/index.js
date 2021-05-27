@@ -3,9 +3,15 @@ import styles from "./NoteCard.module.css";
 function NoteCard({ note }) {
   return (
     <div className={styles.noteCard}>
-      <h1 className={styles.name} id={note.id}>
-        {note.name}
-      </h1>
+      {note.name ? (
+        <h1 className={styles.name} id={note.id}>
+          {note.name}
+        </h1>
+      ) : (
+        <h1 className={styles.name} id={note.id}>
+          Untitled
+        </h1>
+      )}
       <h1 className={styles.content} id={note.id}>
         {note.content}
       </h1>
@@ -14,6 +20,6 @@ function NoteCard({ note }) {
       </h1>
     </div>
   );
-};
+}
 
 export default NoteCard;

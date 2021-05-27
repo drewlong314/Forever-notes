@@ -20,16 +20,27 @@
   color: #747474;
 }
 
-/* .navSearch {
-    border-radius: 50%;
-} */
-
-.navButton {
+.navSearch {
   box-sizing: border-box;
+  width: 208px;
+  height: 30px;
+  outline: none;
+  padding-left: 10px;
+}
+
+.navButtonLi{
   padding-top: 5px;
   padding-left: 5px;
   padding-bottom: 10px;
+}
+
+.navButton {
+  box-sizing: border-box;
+  text-align: start;
+  width: 208px;
+  height: 30px;
   color: #747474;
+  padding-left: 10px;
 }
 
 .navLi {

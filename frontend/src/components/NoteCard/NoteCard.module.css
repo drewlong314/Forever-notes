@@ -1,42 +1,42 @@
 .noteCard {
-    border-bottom: #DDDFD4 1px solid;
-    box-sizing: border-box;
-    height: 14vh;
-    padding: 15px;
-    position: relative;
+  border-bottom: #dddfd4 1px solid;
+  box-sizing: border-box;
+  height: 14vh;
+  padding: 15px;
+  position: relative;
 }
 
 .noteCard:hover {
-    background-color: #fdfdfd;
-    cursor: pointer;
+  background-color: #fdfdfd;
+  cursor: pointer;
 }
 
 .name {
-    font-size: large;
-    margin: 0;
-    color: #272727;
-    font-weight: 600;
-    position: absolute;
-    top: 5;
-    left: 10;
+  font-size: large;
+  margin: 0;
+  color: #272727;
+  font-weight: 600;
+  position: absolute;
+  top: 5;
+  left: 10;
 }
 
 .content {
-    font-size: large;
-    color: #272727;
-    font-weight: 500;
-    position: absolute;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 30ch;
-    top: 37px;
-    left: 15px;
+  font-size: large;
+  color: #272727;
+  font-weight: 500;
+  position: absolute;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 30ch;
+  top: 37px;
+  left: 15px;
 }
 
 .updated {
-    font-size: large;
-    font-weight: 500;
-    position: absolute;
-    bottom: 0;
+  font-size: medium;
+  font-weight: 500;
+  position: absolute;
+  bottom: 0;
 }

@@ -74,8 +74,8 @@ function Navigation({ isLoaded }) {
             ></input>
           </form>
         </li>
-        <li className={styles.navButton}>
-          <button
+        <li className={styles.navButtonLi}>
+          <button className={styles.navButton}
             onClick={() =>
               dispatch(createNote(sessionUser.id, notebooks[0].id))
             }

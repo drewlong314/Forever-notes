@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
+import styles from "./ProfileButton.module.css";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function ProfileButton({ user }) {
       <button onClick={openMenu}>
         <i className="fas fa-cookie" />
       </button>
-      <span> {user.username}</span>
+      <span className={styles.username}>   {user.username}</span>
       {showMenu && (
         <ul className="profile-dropdown">
           <li>

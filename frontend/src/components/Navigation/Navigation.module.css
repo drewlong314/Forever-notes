@@ -43,14 +43,14 @@
   padding-left: 10px;
 }
 
-/* .navLi {
+.navLi {
   box-sizing: border-box;
   padding-top: 10px;
   padding-bottom: 5px;
   padding-left: 10px;
   color: #747474;
   font-weight: bold;
-} */
+}
 
 .navLi:hover {
   background-color: #747474;

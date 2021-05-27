@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteNotebook } from "../../store/notebooks";
+import styles from "./DeleteNotebook.module.css";
 
-function DeleteNotebook({notebook}) {
+function DeleteNotebook({ notebook }) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
@@ -12,10 +13,14 @@ function DeleteNotebook({notebook}) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Delete Notebook</h1>
-      <button type="submit">Continue</button>
-    </form>
+
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <h3 className={styles.action}>Delete Notebook?</h3>
+        <p className={styles.description}>All notes in the notebooks will be deleted</p>
+        <button className={styles.submitButton} type="submit">
+          Continue
+        </button>
+      </form>
   );
 }
 

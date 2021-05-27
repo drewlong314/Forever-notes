@@ -43,21 +43,39 @@
   padding-left: 10px;
 }
 
-.navLi {
+/* .navLi {
   box-sizing: border-box;
   padding-top: 10px;
   padding-bottom: 5px;
   padding-left: 10px;
   color: #747474;
   font-weight: bold;
-}
+} */
 
 .navLi:hover {
   background-color: #747474;
 }
 
+.navLiButton {
+  border: none;
+  color: #f1f1efd8;
+  background-color: #272727;
+  width: 208px;
+  height: 30px;
+  text-align: start;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.navLiButton:hover {
+  background-color: #747474;
+}
+
 .navAnchor {
-  color: black;
+  /* color: black; */
+  padding-left: 5px;
   text-decoration: none;
   color: #f1f1efd8;
 }

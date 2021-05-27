@@ -83,19 +83,19 @@ function Navigation({ isLoaded }) {
             + New Note
           </button>
         </li>
-        <li className={styles.navLi}>
+        <li >
           <NavLink className={styles.navAnchor} exact to="/">
-            Home
+            <button className={styles.navLiButton}>Home</button>
           </NavLink>
         </li>
-        <li className={styles.navLi}>
+        <li>
           <NavLink className={styles.navAnchor} exact to="/notes">
-            Notes
+          <button className={styles.navLiButton}>Notes</button>
           </NavLink>
         </li>
-        <li className={styles.navLi}>
+        <li>
           <NavLink className={styles.navAnchor} exact to="/notebooks">
-            Notebooks
+          <button className={styles.navLiButton}>Notebooks</button>
           </NavLink>
         </li>
       </ul>

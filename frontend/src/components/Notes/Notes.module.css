@@ -14,7 +14,24 @@
 }
 
 .noteHeader {
+    box-sizing: border-box;
     border: #CDCDCD 1px solid;
+    height: 9vh;
+    /* font-size: 20px; */
+}
+
+.notesPage {
+    padding-left: 15px;
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.notesNum {
+    /* padding-top: 30px; */
+    padding-left: 15px;
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 
 .noteUl {
@@ -34,14 +51,15 @@
 .nameArea {
     box-sizing: border-box;
     padding: 10px;
-    height: 5vh;
+    height: 9.34vh;
     margin: 0;
-    padding: 10px;
+    padding-top: 50px;
     border-left: grey 1px solid;
     border-bottom: grey 1px solid;
     border-top: none;
     border-right: none;
     resize: none;
+    text-align: left;
 }
 
 .contentArea {

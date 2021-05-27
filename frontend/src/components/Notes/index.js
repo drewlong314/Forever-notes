@@ -70,9 +70,8 @@ function Notes() {
       <div className={styles.container}>
         <ul className={styles.noteUl}>
           <div className={styles.noteHeader}>
-            Notes
-            <br />
-            {notes.length}
+            <p className={styles.notesPage}>Notes</p>
+            <p className={styles.notesNum}>{notes.length} notes</p>
           </div>
           {notes.map((note) => {
             return (
@@ -91,7 +90,7 @@ function Notes() {
         {selected ? (
           <div className={styles.selectedNote}>
             <textarea
-              placeholder='Title'
+              placeholder="Title"
               className={styles.nameArea}
               value={selectedName}
               onChange={(e) => {
@@ -100,7 +99,7 @@ function Notes() {
               }}
             ></textarea>
             <textarea
-              placeholder='Start writing'
+              placeholder="Start writing"
               className={styles.contentArea}
               value={selectedContent}
               onChange={(e) => {

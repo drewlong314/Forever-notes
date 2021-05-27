@@ -15,7 +15,7 @@
 }
 
 .submitButton{
-    /* margin-top: 10px; */
+    margin: 10px;
     width: 12.5rem;
     background-color: black;
     color: white

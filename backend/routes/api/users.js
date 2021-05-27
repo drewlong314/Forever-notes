@@ -32,7 +32,16 @@ router.post(
   asyncHandler(async (req, res) => {
     const { email, password, username } = req.body;
     const user = await User.signup({ email, username, password });
-
+    const notebook = await Notebook.create({
+      name: 'Untitled',
+      userId: user.id,
+    });
+    const note = await Note.create({
+      name: "",
+      content: "",
+      userId: user.id,
+      notebookId: notebook.id,
+    });
     await setTokenCookie(res, user);
 
     return res.json({

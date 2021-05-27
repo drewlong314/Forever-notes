@@ -82,11 +82,11 @@ function Navigation() {
             + New Note
           </button>
         </li>
-        <li >
+        {/* <li >
           <NavLink className={styles.navAnchor} exact to="/">
             <button className={styles.navLiButton}>Home</button>
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink className={styles.navAnchor} exact to="/notes">
           <button className={styles.navLiButton}>Notes</button>

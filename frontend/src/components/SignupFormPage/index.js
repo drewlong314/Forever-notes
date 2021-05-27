@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import styles from "./SignupFormPage.module.css";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -18,58 +19,96 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        });
+      return dispatch(
+        sessionActions.signup({ email, username, password })
+      ).catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
     }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+    return setErrors([
+      "Confirm Password field must be the same as the Password field",
+    ]);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-      <label>
-        Email
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Username
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Confirm Password
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Sign Up</button>
-    </form>
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <ul className={styles.errors}>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+        <div className={styles.formContainer}>
+          <label>
+            Email
+            <div>
+              <input
+                type="text"
+                placeholder="Email"
+                className={styles.input}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+          </label>
+        </div>
+        <div className={styles.formContainer}>
+          <label>
+            Username
+            <div>
+              <input
+                type="text"
+                placeholder="Username"
+                className={styles.input}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+          </label>
+        </div>
+        <div className={styles.formContainer}>
+          <label>
+            Password
+            <div>
+              <input
+                type="password"
+                placeholder="Password"
+                className={styles.input}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+          </label>
+        </div>
+        <div className={styles.formContainer}>
+          <label>
+            Confirm Password
+            <div>
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                className={styles.input}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </div>
+          </label>
+        </div>
+        <button type="submit" className={styles.submitButton}>
+          Sign Up
+        </button>
+        <div className={styles.formContainer}>
+          <NavLink to="/login">
+            <button className={styles.submitButton}>Go to Login Page</button>
+          </NavLink>
+        </div>
+      </form>
+    </div>
   );
 }
 

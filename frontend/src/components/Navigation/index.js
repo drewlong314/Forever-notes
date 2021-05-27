@@ -8,7 +8,7 @@ import { getNotebooks } from "../../store/notebooks";
 import { csrfFetch } from "../../store/csrf";
 import SearchPage from "../SearchPage";
 
-function Navigation({ isLoaded }) {
+function Navigation() {
   const history = useHistory();
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
@@ -36,7 +36,6 @@ function Navigation({ isLoaded }) {
 
   useEffect(() => {
     setChanged(false)
-    console.log('RERENDER')
   }, [changed])
 
 
@@ -57,7 +56,7 @@ function Navigation({ isLoaded }) {
   return (
     <nav>
       <ul className={styles.navList}>
-        <li className={styles.navUser}>{isLoaded && sessionLinks}</li>
+        <li className={styles.navUser}>{sessionLinks}</li>
         <li className={styles.navSearchContainer}>
           <form
             onSubmit={(e) => {

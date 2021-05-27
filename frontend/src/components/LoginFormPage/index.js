@@ -11,7 +11,7 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/notes" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -67,6 +67,7 @@ function LoginFormPage() {
             Log In
           </button>
         </div>
+        
         <div className={styles.formContainer}>
           <NavLink to="/signup">
             <button className={styles.submitButton}>Go to Sign up Page</button>

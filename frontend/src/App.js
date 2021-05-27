@@ -8,6 +8,7 @@ import Notes from "./components/Notes";
 import Notebooks from "./components/Notebooks";
 import SearchPage from "./components/SearchPage";
 import NotebookSpecific from "./components/NotebookSpecific";
+import SplashPage from "./components/SplashPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path ="/">
-            <h1>Hello</h1>
+            <SplashPage/>
           </Route>
           <Route path="/login">
             <LoginFormPage />

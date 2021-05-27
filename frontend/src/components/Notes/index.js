@@ -68,7 +68,7 @@ function Notes() {
     <div className={styles.pageContainer}>
       <Navigation isLoaded={isLoaded} />
       <div className={styles.container}>
-        <ul className={styles.noteUl}>
+        <ul className={styles.noteUl} id={styles.style}>
           <div className={styles.noteHeader}>
             <p className={styles.notesPage}>Notes</p>
             <p className={styles.notesNum}>{notes.length} notes</p>

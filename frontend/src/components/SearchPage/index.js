@@ -9,10 +9,10 @@ import styles from "./SearchPage.module.css";
 
 function SearchPage() {
   const history = useHistory();
-  const location = useLocation()
+  const location = useLocation();
   let state = location.state;
   if (!state) state = { json: [] };
-  console.log(state)
+  console.log(state);
   const searchList = state.json;
   const dispatch = useDispatch();
   const notes = useSelector((state) => Object.values(state.notes));
@@ -40,18 +40,16 @@ function SearchPage() {
     }
   };
 
-
   const getIdOfList = () => {
     const listIds = searchList.map((item) => item.id);
     console.log(listIds, "LIST IDS");
     return listIds;
   };
 
-
   useEffect(() => {
     if (sessionUser) {
       dispatch(getSearchNotes(getIdOfList()));
-      console.log(notes)
+      console.log(notes);
     } else {
       history.push("/login");
     }
@@ -59,7 +57,6 @@ function SearchPage() {
     //   history.push("/login");
     // }
   }, [dispatch, sessionUser, history, state]);
-
 
   useEffect(() => {
     if (notes.length > 0 && !selected) {
@@ -87,9 +84,8 @@ function SearchPage() {
       <div className={styles.container}>
         <ul className={styles.noteUl}>
           <div className={styles.noteHeader}>
-            Notes
-            <br />
-            {notes.length}
+            <p className={styles.notesPage}>Notes</p>
+            <p className={styles.notesNum}>{notes.length} notes</p>
           </div>
           {notes.map((note) => {
             return (

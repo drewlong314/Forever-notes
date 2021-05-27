@@ -14,15 +14,32 @@
 }
 
 .noteHeader {
-    border: black 1px solid;
+    box-sizing: border-box;
+    border-bottom: #CDCDCD 1px solid;
+    height: 9vh;
+}
+
+.notesPage {
+    padding-left: 15px;
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.notesNum {
+    /* padding-top: 30px; */
+    padding-left: 15px;
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 
 .noteUl {
     margin: 0;
     padding: 0;
-    background-color: sandybrown;
+    background-color: #F1F1EF;
     width: 16vw;
     height: 100vh;
+    overflow-y: scroll;
 }
 
 .selectedNote {

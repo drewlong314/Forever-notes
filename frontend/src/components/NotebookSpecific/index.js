@@ -79,9 +79,8 @@ function NotebookSpecific(props) {
       <div className={styles.container}>
         <ul className={styles.noteUl}>
           <div className={styles.noteHeader}>
-            Notes
-            <br />
-            {notes.length}
+            <p className={styles.notesPage}>Notes</p>
+            <p className={styles.notesNum}>{notes.length} notes</p>
           </div>
           {notes.map((note) => {
             return (

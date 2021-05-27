@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateNotebooks } from "../../store/notebooks";
+import styles from "./RenameNotebook.module.css";
 
 function RenameNotebook({notebook}) {
   const dispatch = useDispatch();
@@ -12,18 +13,21 @@ function RenameNotebook({notebook}) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Rename Notebook</h1>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <h1 className={styles.action}>Rename Notebook</h1>
       <label>
-        Name
         <input
+        className={styles.input}
+        placeholder='Name of Notebook'
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
       </label>
-      <button type="submit">Continue</button>
+      <div className={styles.line}>
+      </div>
+      <button type="submit" className={styles.submitButton}>Continue</button>
     </form>
   );
 }

@@ -40,3 +40,16 @@
   position: absolute;
   bottom: 0;
 }
+
+.deleteButton {
+  position: absolute;
+  /* right: 10px;
+  top: 10px; */
+  right: 0;
+  top: 0;
+  background-color: #ff5248;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  padding: 8px;
+}

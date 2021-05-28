@@ -51,25 +51,29 @@
 
 .nameArea {
     box-sizing: border-box;
-    padding: 10px;
+    padding: 30px;
     height: 9.34vh;
     margin: 0;
-    padding-top: 50px;
+    padding-top: 30px;
     border-left: grey 1px solid;
     border-bottom: grey 1px solid;
     border-top: none;
     border-right: none;
     resize: none;
     text-align: left;
+    font-size: 20px;
+    outline: none;
 }
 
 .contentArea {
     box-sizing: border-box;
-    padding: 10px;
+    padding: 30px;
     height: 100vh;
     border-left: grey 1px solid;
     border-bottom: grey 1px solid;
     border-top: none;
     border-right: none;
     resize: none;
+    font-size: 20px;
+    outline: none;
 }

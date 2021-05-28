@@ -31,7 +31,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button className={styles.profileIcon} onClick={openMenu}>
         <i className="fas fa-cookie" />
       </button>
       <span className={styles.username}>   {user.username}</span>

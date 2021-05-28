@@ -49,7 +49,7 @@ function DropDown({ notebook }) {
 
   return (
     <div>
-      <button onClick={(e) => showMenuFunc()}>...</button>
+      <button className={styles.optionsButton} onClick={(e) => showMenuFunc()}>...</button>
       {showMenu ? (
         <div ref={menuRef} id={"menu"} className={styles.menuItem}>
           <button className={styles.exit} onClick={() => setShowMenu(false)}>X</button>

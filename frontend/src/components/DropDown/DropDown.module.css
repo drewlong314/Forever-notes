@@ -16,8 +16,13 @@
     align-self: flex-end;
     border: none;
     /* background-color: #D11A2A; */
+    cursor: pointer;
 }
 
 .exit:hover {
     background-color: #D11A2A;
+}
+
+.optionsButton {
+    cursor: pointer;
 }

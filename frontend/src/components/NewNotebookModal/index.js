@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Modal } from "../../context/Modal";
 import NewNotebook from "./NewNotebook";
+import styles from "./NewNotebook.module.css";
 
 function NewNotebookModal({ notebook }) {
   const [showModal, setShowModal] = useState(false);
@@ -8,6 +9,7 @@ function NewNotebookModal({ notebook }) {
   return (
     <>
       <button
+      className={styles.addPointer}
         onClick={() => {
           setShowModal(true);
         }}

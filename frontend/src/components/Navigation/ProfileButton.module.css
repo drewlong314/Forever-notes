@@ -1,3 +1,7 @@
+.profileIcon {
+    cursor: pointer;
+}
+
 .username {
     padding-left: 10px;
 }

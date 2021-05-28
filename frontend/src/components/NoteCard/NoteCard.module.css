@@ -47,9 +47,13 @@
   top: 10px; */
   right: 0;
   top: 0;
-  background-color: #ff5248;
+  background-color: #fdfdfd;
   cursor: pointer;
   border: none;
   text-align: center;
   padding: 8px;
+}
+
+.deleteButton:hover {
+  background-color: #ff5248;
 }

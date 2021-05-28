@@ -59,6 +59,7 @@
     border-top: none;
     border-right: none;
     resize: none;
+    font-size: 20px;
 }
 
 .contentArea {
@@ -70,4 +71,5 @@
     border-top: none;
     border-right: none;
     resize: none;
+    font-size: 20px;
 }

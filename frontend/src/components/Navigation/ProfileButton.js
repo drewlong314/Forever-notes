@@ -32,7 +32,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <button className={styles.profileIcon} onClick={openMenu}>
-        <i className="fas fa-cookie" />
+      <i class="fas fa-book"></i>
       </button>
       <span className={styles.username}>   {user.username}</span>
       {showMenu && (

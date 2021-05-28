@@ -13,25 +13,33 @@
 
 .notebookHeader {
   display: flex;
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .notebookSearch {
   margin-left: auto;
   align-self: center;
+  font-size: 15px;
 }
 
 .notebookInfo {
   display: flex;
   border-bottom: solid black 2px;
+  font-size: 20px;
+  padding-left: 10px;
 }
 
 .notebookCreate {
   margin-left: auto;
   align-self: center;
+  padding-right: 10px;
 }
 
 .notebookList {
   list-style-type: none;
+  font-size: 20px;
   padding: 0;
 }
 
@@ -41,6 +49,10 @@
   background-color: #f8f8ff;
   grid-template-columns: 3fr 1fr 1fr 1fr;
   grid-template-areas: "title created updated action";
+  font-size: 15px;
+  padding: 5px;
+  font-weight: bold;
+  font-family:sans-serif
 }
 
 .notebookTitle {
@@ -49,13 +61,18 @@
 }
 
 .notebookNameButton {
-  height: 100%;
+  box-sizing: border-box;
+  /* height: 100%; */
   border: none;
   cursor: pointer;
+  font-size: 20px;
+  width: 100%;
+  background-color: #f8f8ff;
+  text-align: start;
 }
 
 .notebookNameButton:hover {
-  background-color: cadetblue;
+  background-color: white;
 }
 
 .notebookCreated {
@@ -82,4 +99,5 @@
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr;
   grid-template-areas: "title created updated action";
+  background-color: #f8f8ff;
 }

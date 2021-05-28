@@ -6,7 +6,7 @@ module.exports = {
       "Notebooks",
       [
         {
-          name: "Lorem ipsum",
+          name: "Groceries",
           userId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),

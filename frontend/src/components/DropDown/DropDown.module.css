@@ -1,28 +1,48 @@
 .menuItem {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    width: 200px;
-    background: white;
-    padding: 10px;
-    box-shadow: 1px -1px 4px #8a795d, -2px 2px 4px #8a795d;
-    position: fixed;
-    right: 130px
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 200px;
+  background: white;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  position: fixed;
+  right: 130px;
+  border-radius: 8px;
+  /* background-color: black; */
 }
 
 .exit {
-    align-self: flex-end;
-    border: none;
-    /* background-color: #D11A2A; */
-    cursor: pointer;
+  align-self: flex-end;
+  border: none;
+  /* background-color: #D11A2A; */
+  cursor: pointer;
 }
 
 .exit:hover {
-    background-color: #D11A2A;
+  background-color: #d11a2a;
+}
+
+.exit,
+.add {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  margin-bottom: 5px;
 }
 
 .optionsButton {
-    cursor: pointer;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  box-sizing: border-box;
+  border-radius: 6px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
 }

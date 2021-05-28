@@ -54,3 +54,13 @@
     margin-bottom: 10px;
     width: 100%;
 }
+
+.addPointer {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    margin-bottom: 5px;
+}

@@ -54,6 +54,7 @@ function DropDown({ notebook }) {
         <div ref={menuRef} id={"menu"} className={styles.menuItem}>
           <button className={styles.exit} onClick={() => setShowMenu(false)}>X</button>
           <button
+          className={styles.add}
             onClick={() => {
               dispatch(createNote(sessionUser.id, notebook.id))
               history.push(`/notebook/${notebook.id}`)
@@ -66,9 +67,10 @@ function DropDown({ notebook }) {
             ref={renameRef}
             notebook={notebook}
             closeMenu={closeMenu}
+            className={styles.rename}
           />
           {/* <LoginFormModal/> */}
-          <DeleteNotebookModal onClick={() => setShowMenu(false)}notebook={notebook}/>
+          <DeleteNotebookModal className={styles.delete} onClick={() => setShowMenu(false)}notebook={notebook}/>
           {/* <button onClick={() => dispatch(deleteNotebook(notebook.id))}> Delete notebook </button> */}
         </div>
       ) : null}

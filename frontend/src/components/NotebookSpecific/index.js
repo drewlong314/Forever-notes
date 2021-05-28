@@ -114,14 +114,6 @@ function NotebookSpecific(props) {
                 setSelectedContent(e.target.value);
               }}
             ></textarea>
-            <button
-              onClick={() => {
-                dispatch(deleteNotes(selected.id));
-                setDeleted(true);
-              }}
-            >
-              DELETE NOTE
-            </button>
           </div>
         ) : null}
       </div>

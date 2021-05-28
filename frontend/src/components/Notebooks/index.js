@@ -65,11 +65,12 @@ function Notebooks() {
       <div className={styles.notebookSelect}>
         <div className={styles.notebookHeader}>
           <p>Notebooks</p>
-          <input
+          {/* ADD THIS IN, THIS IS THE SEARCH BAR FOR NOTEBOOKS IT IS EASY TO SET UP */}
+          {/* <input
             className={styles.notebookSearch}
             type="text"
             placeholder="Find Notebooks..."
-          ></input>
+          ></input> */}
         </div>
         <div className={styles.notebookInfo}>
           <p>{`${notebooks.length} notebooks`}</p>

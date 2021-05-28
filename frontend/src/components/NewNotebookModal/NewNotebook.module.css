@@ -1,60 +1,65 @@
 .form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    background-color: #fff;
-    width: 25vw;
-    height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+  background-color: #fff;
+  width: 25vw;
+  height: 20vh;
 }
 
 .action {
-    align-self: flex-start;
-    padding-left: 20px;
+  align-self: flex-start;
+  padding-left: 20px;
 }
 
 .description {
-    align-self: flex-start;
-    padding-left: 20px;
-    color: #8b8b8b;
+  align-self: flex-start;
+  padding-left: 20px;
+  color: #8b8b8b;
 }
 
-.submitButton{
-    box-sizing: border-box;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 10px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    /* margin: 20px; */
-    width: 100px;
-    font-size: 20px;
-    align-self: flex-end;
-    cursor: pointer;
+.submitButton {
+  box-sizing: border-box;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  /* margin: 20px; */
+  width: 100px;
+  font-size: 20px;
+  align-self: flex-end;
+  cursor: pointer;
 }
 
 .input {
-    box-sizing: border-box;
-    font-size: 17px;
-    border-radius: 6px;
-    padding: 20px;
-    width: 300px;
-    height: 15px;
+  box-sizing: border-box;
+  font-size: 17px;
+  border-radius: 6px;
+  padding: 20px;
+  width: 300px;
+  height: 15px;
 }
 
 .line {
-    display: flex;
-    border-bottom: 1px #272727 solid;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    width: 100%;
+  display: flex;
+  border-bottom: 1px #272727 solid;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .addPointer {
-    cursor: pointer;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
 }

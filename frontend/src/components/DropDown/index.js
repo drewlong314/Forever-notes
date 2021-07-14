@@ -39,8 +39,6 @@ function DropDown({ notebook }) {
   // }, [showMenu]);
 
   useEffect(() => {
-    console.log(renameRef.current);
-    console.log(menuRef.current);
   }, [menuRef.current, renameRef.current]);
 
   useEffect(() => {

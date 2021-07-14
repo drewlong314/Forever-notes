@@ -26,7 +26,6 @@ router.post(
         [Op.in]: listIds
       }
     }})
-    console.log(notes, '---------------')
     res.json(notes);
   })
 );

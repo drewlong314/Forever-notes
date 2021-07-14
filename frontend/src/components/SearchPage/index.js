@@ -12,7 +12,6 @@ function SearchPage() {
   const location = useLocation();
   let state = location.state;
   if (!state) state = { json: [] };
-  console.log(state);
   const searchList = state.json;
   const dispatch = useDispatch();
   const notes = useSelector((state) => Object.values(state.notes));
@@ -42,14 +41,12 @@ function SearchPage() {
 
   const getIdOfList = () => {
     const listIds = searchList.map((item) => item.id);
-    console.log(listIds, "LIST IDS");
     return listIds;
   };
 
   useEffect(() => {
     if (sessionUser) {
       dispatch(getSearchNotes(getIdOfList()));
-      console.log(notes);
     } else {
       history.push("/");
     }

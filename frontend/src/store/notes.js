@@ -52,7 +52,6 @@ export const getNotebookNotes = (id, notebookId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${id}/notebooks/${notebookId}`);
   if (res.ok) {
     const notes = await res.json();
-    console.log(notes, 'notes output getNotebookNotes')
     dispatch(setNotebookNotes(notes));
   }
 };
@@ -68,7 +67,6 @@ export const getSearchNotes = (listIds) => async (dispatch) => {
   });
   if (res.ok) {
     const notes = await res.json();
-    console.log(notes, 'notes output getSearchNotes')
     dispatch(setNotebookNotes(notes));
   }
 };

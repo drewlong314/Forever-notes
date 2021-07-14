@@ -11,7 +11,6 @@ function NotebookSpecific(props) {
   const history = useHistory();
   let state = props.location.state;
   if (!state) state = { json: [] };
-  console.log(state);
   const searchList = state.json;
   const dispatch = useDispatch();
   const notes = useSelector((state) => Object.values(state.notes));
@@ -52,8 +51,6 @@ function NotebookSpecific(props) {
   }, [dispatch, sessionUser, history]);
 
   useEffect(() => {
-    console.log(notes, "LINE 55");
-    console.log(searchList);
     if (notes.length > 0 && !selected) {
       setSelectedProperties(notes);
     }

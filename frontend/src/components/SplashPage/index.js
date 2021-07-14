@@ -73,18 +73,18 @@ function SplashPage() {
                 </div>
               </label>
             </div>
-            <div className={styles.formContainer}>
+            <div className={styles.submitContainer}>
               <button type="submit" className={styles.submitButton}>
                 Log In
               </button>
             </div>
-            <div className={styles.line}></div>
           </form>
-          <form onSubmit={onDemo}>
-            <button className={styles.demo} type="submit">
+          <form className={styles.submitContainer} onSubmit={onDemo}>
+            <button className={styles.submitButton} type="submit">
               Demo Login
             </button>
           </form>
+          <div className={styles.line}></div>
           <div className={styles.formContainer}>
             <NavLink to="/signup">
               <button className={styles.submitButton}>

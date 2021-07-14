@@ -7,8 +7,8 @@ import styles from "./SplashPage.module.css";
 function SplashPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const [credential, setCredential] = useState("");
-  const [password, setPassword] = useState("");
+  let [credential, setCredential] = useState("");
+  let [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) return <Redirect to="/notes" />;
@@ -23,6 +23,14 @@ function SplashPage() {
       }
     );
   };
+
+  const onDemo = async (e) => {
+    e.preventDefault();
+    credential = "Demo-User"
+    password = "password"
+    const data = await dispatch(sessionActions.login({ credential, password}));
+  };
+
   return (
     <div>
       <div className={styles.flexDiv}>
@@ -71,14 +79,19 @@ function SplashPage() {
               </button>
             </div>
             <div className={styles.line}></div>
-            <div className={styles.formContainer}>
-              <NavLink to="/signup">
-                <button className={styles.submitButton}>
-                  Go to Sign up Page
-                </button>
-              </NavLink>
-            </div>
           </form>
+          <form onSubmit={onDemo}>
+            <button className={styles.demo} type="submit">
+              Demo Login
+            </button>
+          </form>
+          <div className={styles.formContainer}>
+            <NavLink to="/signup">
+              <button className={styles.submitButton}>
+                Go to Sign up Page
+              </button>
+            </NavLink>
+          </div>
         </div>
       </div>
       <footer className={styles.footer}></footer>

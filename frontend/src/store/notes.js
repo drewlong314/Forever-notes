@@ -50,6 +50,7 @@ export const getNotes = (id) => async (dispatch) => {
 
 export const getNotebookNotes = (id, notebookId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${id}/notebooks/${notebookId}`);
+  console.log(res, '-----------------------')
   if (res.ok) {
     const notes = await res.json();
     dispatch(setNotebookNotes(notes));
@@ -57,7 +58,7 @@ export const getNotebookNotes = (id, notebookId) => async (dispatch) => {
 };
 
 export const getSearchNotes = (listIds) => async (dispatch) => {
-  const data = {listIds}
+  const data = { listIds };
   const res = await csrfFetch(`/api/notes/search`, {
     method: "POST",
     headers: {
@@ -110,7 +111,7 @@ const notesReducer = (state = initialState, action) => {
       });
       return newState;
     case SET_NOTEBOOK_NOTES:
-      const newStateNotebook = {}
+      const newStateNotebook = {};
       action.notes.forEach((note) => {
         newStateNotebook[note.id] = note;
       });

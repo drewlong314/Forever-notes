@@ -12,7 +12,7 @@ function NewNotebook() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(hideCreate())
-    return dispatch(createNotebook(sessionUser.id, name));
+    dispatch(createNotebook(sessionUser.id, name));
   };
 
   return (

@@ -20,35 +20,13 @@ function DropDown({ notebook }) {
   const renameRef = useRef(null);
   const buttonRef = useRef(null);
 
-  const showMenuFunc = () => {
-    setShowMenu(true);
-  };
-
-  const closeMenu = (e) => {
-    // console.log(menuRef.current, "////////////////////////////////////");
-    // if (!menuRef.current.contains(e.target)) {
-    //   setShowMenu(false);
-    //   document.removeEventListener("click", closeMenu);
-    // }
-  };
-
-  // useEffect(() => {
-  //   // if (showMenu) {
-  //   //   document.addEventListener("click", closeMenu);
-  //   // }
-  //   //   : document.removeEventListener("click", closeMenu);
-  // }, [showMenu]);
-
   useEffect(() => {
-  }, [menuRef.current, renameRef.current]);
-
-  useEffect(() => {
-    if (showMenu) setShowMenu(false)
-  }, [notebooks.length])
+    console.log(showMenu)
+  }, [showMenu])
 
   return (
     <div>
-      <button className={styles.optionsButton} onClick={(e) => showMenuFunc()}>...</button>
+      <button className={styles.optionsButton} onClick={(e) => setShowMenu(true)}>...</button>
       {showMenu ? (
         <div ref={menuRef} id={"menu"} className={styles.menuItem}>
           <button className={styles.exit} onClick={() => setShowMenu(false)}>X</button>
@@ -65,13 +43,9 @@ function DropDown({ notebook }) {
           <RenameNotebookModal
             ref={renameRef}
             notebook={notebook}
-            closeMenu={closeMenu}
             className={styles.rename}
-            // showRename={dispatch(showRename())}
           />
-          {/* <LoginFormModal/> */}
           <DeleteNotebookModal className={styles.delete} onClick={() => setShowMenu(false)}notebook={notebook}/>
-          {/* <button onClick={() => dispatch(deleteNotebook(notebook.id))}> Delete notebook </button> */}
         </div>
       ) : null}
     </div>

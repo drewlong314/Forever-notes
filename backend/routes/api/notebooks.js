@@ -11,6 +11,12 @@ router.post(
       name: req.body.name,
       userId: req.body.userId,
     });
+    const note = await Note.create({
+      name: '',
+      content: '',
+      userId: req.body.userId,
+      notebookId: notebook.id,
+    })
     res.json(notebook);
   })
 );

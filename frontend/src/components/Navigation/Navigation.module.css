@@ -81,3 +81,17 @@
   text-decoration: none;
   color: #f1f1efd8;
 }
+
+.footer {
+  position: absolute;
+  bottom: 10px;
+  width: 18vw;
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 20px;
+}
+
+.aboutAnchor {
+  text-decoration: none;
+  color: beige;
+}

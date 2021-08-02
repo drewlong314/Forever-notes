@@ -116,6 +116,21 @@ function Navigation() {
             <button className={styles.navLiButton}>Notebooks</button>
           </NavLink>
         </li>
+        <footer className={styles.footer}>
+          <a className={styles.aboutAnchor} href={"https://github.com/drewlong314/Forever-notes"}>
+            <i className={"fab fa-github-square fa-2x"}></i>
+          </a>
+          <a className={styles.aboutAnchor} href={"https://www.linkedin.com/in/drew-long-361772172/"}>
+            <i className={"fab fa-linkedin fa-2x"}></i>
+          </a>
+          <a className={styles.aboutAnchor} href={"https://angel.co/u/drew-long-1"}>
+            <i className={"fab fa-angellist fa-2x"}></i>
+          </a>
+          <a className={styles.aboutAnchor} href={"https://drewlong314.github.io/"}>
+            <i className={"far fa-user fa-2x"}></i>
+          </a>
+
+        </footer>
       </ul>
     </nav>
   );

@@ -21,7 +21,6 @@ function DropDown({ notebook }) {
   const buttonRef = useRef(null);
 
   useEffect(() => {
-    console.log(showMenu)
   }, [showMenu])
 
   return (

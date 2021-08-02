@@ -47,19 +47,16 @@ router.delete(
   asyncHandler(async (req, res) => {
     const { noteId } = req.params;
     const note = await Note.findByPk(noteId);
-    // const notebook = await Notebook.findByPk(note.notebookId)
     const notes = await Note.findAll({
       where: {
         notebookId: note.notebookId,
       }
     })
-    console.log(notes.length)
     if (notes.length !== 1) {
       await note.destroy();
       res.json(note);
     }
     else res.json('')
-    // console.log(note)
 
   })
 );

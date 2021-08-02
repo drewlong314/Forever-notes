@@ -10,7 +10,6 @@ function NoteCard({ note }) {
       <button
       className={styles.deleteButton}
         onClick={() => {
-          console.log(Object.keys(notes).length)
           if (Object.keys(notes).length === 1) {
             alert('There must be at least one note in a notebook.')
           }

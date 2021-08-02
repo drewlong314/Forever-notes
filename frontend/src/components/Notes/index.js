@@ -76,10 +76,12 @@ function Notes() {
           {notes.map((note) => {
             return (
               <div
+                key={note.id}
                 onClick={() => {
                   setSelected(note);
                   setSelectedContent(note.content);
                   setSelectedName(note.name);
+
                 }}
               >
                 <NoteCard note={note} className={styles.NoteCard} />

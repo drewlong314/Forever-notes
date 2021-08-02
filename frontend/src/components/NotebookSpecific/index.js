@@ -82,6 +82,7 @@ function NotebookSpecific(props) {
           {notes.map((note) => {
             return (
               <div
+                key={note.id}
                 onClick={() => {
                   setSelected(note);
                   setSelectedContent(note.content);

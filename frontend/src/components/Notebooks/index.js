@@ -85,9 +85,9 @@ function Notebooks() {
           <p className={styles.notebookAction}>ACTIONS</p>
         </div>
         <ul className={styles.notebookList}>
-          {notebooks.map((notebook) => {
+          {notebooks.map((notebook, i) => {
             return (
-              <div className={styles.notebookChoice}>
+              <div className={styles.notebookChoice} key={i}>
                 <li
                   className={styles.notebookTitle}
                   key={notebook.id}

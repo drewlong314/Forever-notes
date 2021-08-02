@@ -89,7 +89,6 @@ router.get(
         notebookId: notebookId,
       },
     });
-    console.log(notes, 'EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE')
     res.json(notes);
   })
 );

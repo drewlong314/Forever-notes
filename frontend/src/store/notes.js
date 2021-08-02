@@ -50,7 +50,6 @@ export const getNotes = (id) => async (dispatch) => {
 
 export const getNotebookNotes = (id, notebookId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${id}/notebooks/${notebookId}`);
-  console.log(res, '-----------------------')
   if (res.ok) {
     const notes = await res.json();
     dispatch(setNotebookNotes(notes));

@@ -1,7 +1,7 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
 const { Op } = require("sequelize");
-const { Note } = require("../../db/models");
+const { Note, Notebook } = require("../../db/models");
 const router = express.Router();
 
 router.post(
@@ -47,8 +47,20 @@ router.delete(
   asyncHandler(async (req, res) => {
     const { noteId } = req.params;
     const note = await Note.findByPk(noteId);
-    await note.destroy();
-    res.json(note);
+    // const notebook = await Notebook.findByPk(note.notebookId)
+    const notes = await Note.findAll({
+      where: {
+        notebookId: note.notebookId,
+      }
+    })
+    console.log(notes.length)
+    if (notes.length !== 1) {
+      await note.destroy();
+      res.json(note);
+    }
+    else res.json('')
+    // console.log(note)
+
   })
 );
 

@@ -1,15 +1,22 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteNotes } from "../../store/notes";
 import styles from "./NoteCard.module.css";
 
 function NoteCard({ note }) {
+  const notes = useSelector((state) => state.notes);
   const dispatch = useDispatch()
   return (
     <div className={styles.noteCard}>
       <button
       className={styles.deleteButton}
         onClick={() => {
-          dispatch(deleteNotes(note.id));
+          console.log(Object.keys(notes).length)
+          if (Object.keys(notes).length === 1) {
+            alert('There must be at least one note in a notebook.')
+          }
+          else {
+            dispatch(deleteNotes(note.id));
+          }
         }}
       >X</button>
       {note.name ? (

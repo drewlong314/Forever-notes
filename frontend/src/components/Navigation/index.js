@@ -83,16 +83,15 @@ function Navigation() {
             className={styles.navButton}
             onClick={() => {
               if (window.location.href.includes("/notebook/")) {
-                dispatch(
-                  createNote(
-                    sessionUser.id,
-                    parseInt(
-                      window.location.href.slice(
-                        window.location.href.length - 2
-                      )
-                    )
-                  )
+                const checkNumber = window.location.href.slice(
+                  window.location.href.length - 3
                 );
+                let finalNumber;
+                if (checkNumber[0] === "/") finalNumber = checkNumber.slice(1);
+                else if (checkNumber[1] === "/")
+                  finalNumber = checkNumber.slice(2);
+                else finalNumber = checkNumber;
+                dispatch(createNote(sessionUser.id, parseInt(finalNumber)));
               } else {
                 dispatch(createNote(sessionUser.id, notebooks[0].id));
               }
@@ -117,19 +116,30 @@ function Navigation() {
           </NavLink>
         </li>
         <footer className={styles.footer}>
-          <a className={styles.aboutAnchor} href={"https://github.com/drewlong314/Forever-notes"}>
+          <a
+            className={styles.aboutAnchor}
+            href={"https://github.com/drewlong314/Forever-notes"}
+          >
             <i className={"fab fa-github-square fa-2x"}></i>
           </a>
-          <a className={styles.aboutAnchor} href={"https://www.linkedin.com/in/drew-long-361772172/"}>
+          <a
+            className={styles.aboutAnchor}
+            href={"https://www.linkedin.com/in/drew-long-361772172/"}
+          >
             <i className={"fab fa-linkedin fa-2x"}></i>
           </a>
-          <a className={styles.aboutAnchor} href={"https://angel.co/u/drew-long-1"}>
+          <a
+            className={styles.aboutAnchor}
+            href={"https://angel.co/u/drew-long-1"}
+          >
             <i className={"fab fa-angellist fa-2x"}></i>
           </a>
-          <a className={styles.aboutAnchor} href={"https://drewlong314.github.io/"}>
+          <a
+            className={styles.aboutAnchor}
+            href={"https://drewlong314.github.io/"}
+          >
             <i className={"far fa-user fa-2x"}></i>
           </a>
-
         </footer>
       </ul>
     </nav>

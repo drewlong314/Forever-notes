@@ -1,27 +1,26 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "../../context/Modal";
-import { hideRename, showRename } from "../../store/modal";
+import { hideCreate, showCreate } from "../../store/modal";
 import NewNotebook from "./NewNotebook";
 import styles from "./NewNotebook.module.css";
 
 function NewNotebookModal({ notebook }) {
   const dispatch = useDispatch()
-  const showModal = useSelector((state) => state.modals.rename);
-  // const [showModal, setShowModal] = useState(false);
+  const showModal = useSelector((state) => state.modals.create);
 
   return (
     <>
       <button
       className={styles.addPointer}
         onClick={() => {
-          dispatch(showRename());
+          dispatch(showCreate());
         }}
       >
         New Notebook
       </button>
       {showModal && (
-        <Modal onClose={() => dispatch(hideRename())}>
+        <Modal onClose={() => dispatch(hideCreate())}>
           <NewNotebook />
         </Modal>
       )}

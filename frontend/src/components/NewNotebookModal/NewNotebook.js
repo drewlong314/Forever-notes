@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { hideRename } from "../../store/modal";
+import { hideCreate } from "../../store/modal";
 import { createNotebook } from "../../store/notebooks";
 import styles from "./NewNotebook.module.css";
 
@@ -11,7 +11,7 @@ function NewNotebook() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(hideRename())
+    dispatch(hideCreate())
     return dispatch(createNotebook(sessionUser.id, name));
   };
 

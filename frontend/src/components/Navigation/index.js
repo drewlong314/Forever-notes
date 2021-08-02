@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Route, Redirect, useHistory } from "react-router-dom";
+import {
+  NavLink,
+  Route,
+  Redirect,
+  useHistory,
+  useParams,
+} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createNote } from "../../store/notes";
 import ProfileButton from "./ProfileButton";
@@ -14,7 +20,7 @@ function Navigation() {
   const sessionUser = useSelector((state) => state.session.user);
   const notebooks = useSelector((state) => Object.values(state.notebooks));
   const [searchInput, setSearchInput] = useState("");
-  const [changed, setChanged] = useState(false)
+  const [changed, setChanged] = useState(false);
 
   let sessionLinks;
   if (sessionUser) {
@@ -35,9 +41,8 @@ function Navigation() {
   }, [dispatch, sessionUser]);
 
   useEffect(() => {
-    setChanged(false)
-  }, [changed])
-
+    setChanged(false);
+  }, [changed]);
 
   const searchSubmit = async (string) => {
     const data = { string, id: sessionUser.id };
@@ -49,7 +54,7 @@ function Navigation() {
       body: JSON.stringify(data),
     });
     const json = await res.json();
-    setChanged(true)
+    setChanged(true);
     history.push("/search", { json, string });
   };
 
@@ -74,10 +79,24 @@ function Navigation() {
           </form>
         </li>
         <li className={styles.navButtonLi}>
-          <button className={styles.navButton}
-            onClick={() =>
-              dispatch(createNote(sessionUser.id, notebooks[0].id))
-            }
+          <button
+            className={styles.navButton}
+            onClick={() => {
+              if (window.location.href.includes("/notebook/")) {
+                dispatch(
+                  createNote(
+                    sessionUser.id,
+                    parseInt(
+                      window.location.href.slice(
+                        window.location.href.length - 2
+                      )
+                    )
+                  )
+                );
+              } else {
+                dispatch(createNote(sessionUser.id, notebooks[0].id));
+              }
+            }}
           >
             + New Note
           </button>
@@ -89,12 +108,12 @@ function Navigation() {
         </li> */}
         <li>
           <NavLink className={styles.navAnchor} exact to="/notes">
-          <button className={styles.navLiButton}>Notes</button>
+            <button className={styles.navLiButton}>Notes</button>
           </NavLink>
         </li>
         <li>
           <NavLink className={styles.navAnchor} exact to="/notebooks">
-          <button className={styles.navLiButton}>Notebooks</button>
+            <button className={styles.navLiButton}>Notebooks</button>
           </NavLink>
         </li>
       </ul>

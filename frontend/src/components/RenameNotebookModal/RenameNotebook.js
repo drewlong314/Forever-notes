@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { hideRename } from "../../store/modal";
 import { updateNotebooks } from "../../store/notebooks";
 import styles from "./RenameNotebook.module.css";
 
@@ -9,6 +10,7 @@ function RenameNotebook({ notebook }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(hideRename())
     return dispatch(updateNotebooks(notebook.id, name));
   };
 

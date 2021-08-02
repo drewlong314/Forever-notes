@@ -8,6 +8,7 @@ import styles from "./DropDown.module.css";
 import LoginForm from "../LoginFormModal/LoginForm";
 import RenameNotebookModal from "../RenameNotebookModal";
 import DeleteNotebookModal from "../DeleteNotebookModal";
+import { showRename } from "../../store/modal";
 
 function DropDown({ notebook }) {
   const [showMenu, setShowMenu] = useState(false);
@@ -66,6 +67,7 @@ function DropDown({ notebook }) {
             notebook={notebook}
             closeMenu={closeMenu}
             className={styles.rename}
+            // showRename={dispatch(showRename())}
           />
           {/* <LoginFormModal/> */}
           <DeleteNotebookModal className={styles.delete} onClick={() => setShowMenu(false)}notebook={notebook}/>
